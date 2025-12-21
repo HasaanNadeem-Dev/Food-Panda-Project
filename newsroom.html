@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/newsroom.css">
+    <link rel="stylesheet" href="./media/newsroom-media.css">
+    <link rel="icon" type="image/png" href="./assets/img/logo/favicon (1).png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Nav Bar -->
+    <nav>
+        <div class="nav-logo"><img src="./assets/img/logo/Food Panda Logo.svg" alt=""></div>
+        <div class="nav-item">
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="newsroom.html">Newsroom</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="">Panda Ads</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="">Careers</a></li>
+            </ul>
+        </div>
+        <div class="button location-dropdown">
+            <button id="locationBtn">
+                <span class="button-text">Choose Location</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu" id="locationDropdown">
+                <div class="dropdown-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search country..." id="countrySearch">
+                </div>
+                <ul class="country-list">
+                    <li><a href="#" data-country="Bangladesh">Bangladesh</a></li>
+                    <li><a href="#" data-country="Cambodia">Cambodia</a></li>
+                    <li><a href="#" data-country="Hong Kong">Hong Kong</a></li>
+                    <li><a href="#" data-country="Laos">Laos</a></li>
+                    <li><a href="#" data-country="Malaysia">Malaysia</a></li>
+                    <li><a href="#" data-country="Myanmar">Myanmar</a></li>
+                    <li><a href="#" data-country="Pakistan">Pakistan</a></li>
+                    <li><a href="#" data-country="Philippines">Philippines</a></li>
+                    <li><a href="#" data-country="Singapore">Singapore</a></li>
+                    <li><a href="#" data-country="Taiwan">Taiwan</a></li>
+                    <li><a href="#" data-country="Thailand">Thailand</a></li>
+                    <li><a href="#" data-country="Romania">Romania</a></li>
+                    <li><a href="#" data-country="Bulgaria">Bulgaria</a></li>
+                    <li><a href="#" data-country="Georgia">Georgia</a></li>
+                    <li><a href="#" data-country="Hungary">Hungary</a></li>
+                    <li><a href="#" data-country="Kazakhstan">Kazakhstan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-icon">
+            <i class="fa fa-search"></i>
+        </div>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- Press Releases Section -->
+    <section class="press-releases">
+        <div class="container">
+            <h1 class="page-title">Press Releases</h1>
+            <!-- Featured Article -->
+            <div class="featured-article">
+                <div class="featured-image">
+                    <img src="./assets/img/slider/1.jpg" alt="foodpanda strengthens merchant care">
+                </div>
+                <div class="featured-content">
+                    <span class="date">15.12.2024</span>
+                    <h2>foodpanda strengthens merchant care with record onboarding milestone in Asia</h2>
+                    <p>foodpanda continues to expand its merchant network across Asia, reaching a significant milestone in merchant onboarding while enhancing support services for restaurant and retail partners.</p>
+                </div>
+            </div>
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-header">
+                    <h3>Discover latest news</h3>
+                    <div class="filter-tags">
+                        <button class="filter-tag active" data-filter="all">All</button>
+                        <button class="filter-tag" data-filter="press-releases">Press Releases</button>
+                        <button class="filter-tag" data-filter="business">Business</button>
+                        <button class="filter-tag" data-filter="merchants">Merchants</button>
+                        <button class="filter-tag" data-filter="sustainability">Sustainability</button>
+                        <button class="filter-tag" data-filter="partnerships">Partnerships</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Grid -->
+            <div class="news-grid">
+                <!-- Row 1 -->
+                <div class="news-card" data-category="merchants">
+                    <div class="news-image">
+                        <img src="./assets/img/slider/1.jpg" alt="foodpanda strengthens merchant care">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Merchants</span>
+                        <h4>foodpanda strengthens merchant care with record onboarding milestone in Asia</h4>
+                        <span class="date">15.12.2024</span>
+                    </div>
+                </div>
+
+                <div class="news-card" data-category="press-releases">
+                    <div class="news-image">
+                        <img src="./assets/img/slider/2.jpg" alt="foodpanda expands panda heart">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Press Releases</span>
+                        <h4>foodpanda expands panda heart programme with 30% drop in rider accidents across Asia</h4>
+                        <span class="date">23.10.2024</span>
+                    </div>
+                </div>
+
+                <div class="news-card" data-category="partnerships">
+                    <div class="news-image">
+                        <img src="./assets/img/slider/3.jpg" alt="foodpanda brings omnichannel values">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Partnerships</span>
+                        <h4>foodpanda brings omnichannel values to merchants with one-of-a-kind ride-hailing partnership across Asia</h4>
+                        <span class="date">07.10.2024</span>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="news-card" data-category="press-releases">
+                    <div class="news-image">
+                        <img src="./assets/img/slider/4.webp" alt="foodpanda Singapore strengthens support">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Press Releases</span>
+                        <h4>foodpanda Singapore strengthens support for riders with MOU signed with NRCA</h4>
+                        <span class="date">13.08.2024</span>
+                    </div>
+                </div>
+
+                <div class="news-card" data-category="sustainability">
+                    <div class="news-image">
+                        <img src="./assets/img/slider/5.webp" alt="foodpanda delivered 500k">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Sustainability</span>
+                        <h4>foodpanda delivered 500k sustainable packaging</h4>
+                        <span class="date">28.07.2024</span>
+                    </div>
+                </div>
+
+                <div class="news-card" data-category="partnerships">
+                    <div class="news-image">
+                        <img src="./assets/img/slider/6.webp" alt="foodpanda Partners with Fiserv">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Partnerships</span>
+                        <h4>foodpanda Partners with Fiserv to Enable More Streamlined and Secure eCommerce Payments Across Asia</h4>
+                        <span class="date">15.06.2024</span>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="news-card" data-category="press-releases">
+                    <div class="news-image">
+                        <img src="./assets/img/slider/about-1.webp" alt="foodpanda Singapore launches inaugural">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Press Releases</span>
+                        <h4>foodpanda Singapore launches inaugural Rider Safety Month in partnership with Traffic Police</h4>
+                        <span class="date">05.05.2024</span>
+                    </div>
+                </div>
+
+                <div class="news-card" data-category="business">
+                    <div class="news-image">
+                        <img src="./assets/img/slider/about-2.webp" alt="foodpanda Malaysia launches">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Business</span>
+                        <h4>foodpanda Malaysia launches 'Jejak Panda' to provide accessible income opportunities</h4>
+                        <span class="date">22.04.2024</span>
+                    </div>
+                </div>
+
+                <div class="news-card" data-category="sustainability">
+                    <div class="news-image">
+                        <img src="./assets/img/slider/about-3.webp" alt="Finally, something to 'Yew' about">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Sustainability</span>
+                        <h4>Finally, something to 'Yew' about! foodpanda teams up Singapore's "most full" neighbourhood for their first delivery</h4>
+                        <span class="date">18.03.2024</span>
+                    </div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="news-card" data-category="partnerships">
+                    <div class="news-image">
+                        <img src="./assets/img/banner/fp-home-900x506.webp" alt="foodpanda Philippines partners">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Partnerships</span>
+                        <h4>foodpanda Philippines partners with 3ie to extend support to riders and their families</h4>
+                        <span class="date">28.02.2024</span>
+                    </div>
+                </div>
+
+                <div class="news-card" data-category="press-releases">
+                    <div class="news-image">
+                        <img src="./assets/img/banner/foodpanda-home-2-900x506.webp" alt="foodpanda Singapore awards">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Press Releases</span>
+                        <h4>foodpanda Singapore awards $10,000 in bursaries to support riders and their families</h4>
+                        <span class="date">15.01.2024</span>
+                    </div>
+                </div>
+
+                <div class="news-card" data-category="partnerships">
+                    <div class="news-image">
+                        <img src="./assets/img/banner/fp-home-3-900x600.webp" alt="foodpanda partners with CyberSource">
+                    </div>
+                    <div class="news-content">
+                        <span class="category">Partnerships</span>
+                        <h4>foodpanda partners with CyberSource to drive Seamless Growth and Enhanced Customer checkout experience</h4>
+                        <span class="date">08.12.2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+<footer>
+            <div><img src="./assets/img/logo/Food Panda Logo.svg" alt=""></div>
+
+
+            <div class="ft-item">
+                <div style="margin-left: 100px;">
+                    <h2>Navigate</h2>
+                    <ul>
+                        <li>Home</li>
+                        <li>About</li>
+                        <li>Contact</li>
+                        <li>Newsroom</li>
+                    </ul>
+                </div>
+
+                <div style="margin-right: auto; margin-left: 150px;">
+                    <h2>Collaborate</h2>
+                    <ul>
+                        <li>Explore careers</li>
+                        <li>Become a rider</li>
+                        <li>Feed your team</li>
+                    </ul>
+                </div>
+
+                <div style="margin-right: 200px;">
+                    <h2>Follow us on</h2>
+                    <ul style="display: flex; gap: 10px;">
+                        <li><i class="fa-brands fa-facebook-f"></i></li>
+                        <li><i class="fa-brands fa-linkedin-in"></i></li>
+                        <li><i class="fa-brands fa-instagram"></i></li>
+                    </ul>
+                </div>
+            </div>
+     </footer>
+     <section>
+        <div class="ft-down">
+            <div style="margin-left: 100px;">Copyright © 2025 foodpanda</div>
+            <div style="margin-left: auto; margin-right: 50px;"><p><a href="">Privacy Policy</a></p></div>
+        </div>
+     </section>
+
+    <script src="./assets/js/nav.js"></script>
+    <script src="./assets/js/newsroom.js"></script>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu Content -->
+    <div class="mobile-menu-content" id="mobileMenuContent">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                <img src="./assets/img/logo/Food Panda Logo.svg" alt="Food Panda">
+            </div>
+        </div>
+        <ul class="mobile-menu-items">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="newsroom.html">Newsroom</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="">Panda Ads</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="">Careers</a></li>
+            <li class="mobile-location-item">
+                <a href="#" id="mobileLocationLink">
+                    <span class="location-text">Choose Location</span>
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="mobile-country-list">
+                    <li><a href="#" data-country="Bangladesh">Bangladesh</a></li>
+                    <li><a href="#" data-country="Cambodia">Cambodia</a></li>
+                    <li><a href="#" data-country="Hong Kong">Hong Kong</a></li>
+                    <li><a href="#" data-country="Laos">Laos</a></li>
+                    <li><a href="#" data-country="Malaysia">Malaysia</a></li>
+                    <li><a href="#" data-country="Myanmar">Myanmar</a></li>
+                    <li><a href="#" data-country="Pakistan">Pakistan</a></li>
+                    <li><a href="#" data-country="Philippines">Philippines</a></li>
+                    <li><a href="#" data-country="Singapore">Singapore</a></li>
+                    <li><a href="#" data-country="Taiwan">Taiwan</a></li>
+                    <li><a href="#" data-country="Thailand">Thailand</a></li>
+                    <li><a href="#" data-country="Romania">Romania</a></li>
+                    <li><a href="#" data-country="Bulgaria">Bulgaria</a></li>
+                    <li><a href="#" data-country="Georgia">Georgia</a></li>
+                    <li><a href="#" data-country="Hungary">Hungary</a></li>
+                    <li><a href="#" data-country="Kazakhstan">Kazakhstan</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="mobile-auth-buttons">
+            <button class="auth-btn login-signup">Login/Sign up</button>
+        </div>
+    </div>
+</body>
+</html>

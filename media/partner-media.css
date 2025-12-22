@@ -380,3 +380,29 @@
         padding: 60px 0;
     }
 }
+
+
+@media (min-width: 1024px) {
+    .ups {
+        max-width: 1700px; 
+        margin-left: auto; 
+        margin-right: auto; 
+        
+        position: relative;
+}
+footer div{
+        /* Content area expands (gets "bigger") */
+        max-width: 1200px; 
+        margin-left: auto; 
+        margin-right: auto; 
+        
+}
+.ft-up{
+    max-width: 1700px; 
+        margin-left: auto; 
+        margin-right: auto; 
+}
+.ft-down-item{
+    padding-left: 80px;
+}
+}

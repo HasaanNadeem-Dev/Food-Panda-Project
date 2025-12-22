@@ -143,33 +143,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-/* News Filter Functionality */
-document.addEventListener('DOMContentLoaded', function() {
-    const filterTags = document.querySelectorAll('.filter-tag');
-    const newsCards = document.querySelectorAll('.news-card');
-    
-    if (filterTags.length === 0 || newsCards.length === 0) return;
-    
-    filterTags.forEach(tag => {
-        tag.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            /* Update active filter tag */
-            filterTags.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            /* Filter news cards */
-            newsCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    card.style.display = 'block';
-                    card.style.opacity = '0';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                    }, 100);
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-});

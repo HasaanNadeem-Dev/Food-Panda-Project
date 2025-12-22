@@ -162,17 +162,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-/* Category Tags Functionality */
-document.addEventListener('DOMContentLoaded', function() {
-    const categoryTags = document.querySelectorAll('.category-tag');
-    
-    categoryTags.forEach(tag => {
-        tag.addEventListener('click', function() {
-            /* Remove active class from all tags */
-            categoryTags.forEach(t => t.classList.remove('active'));
-            /* Add active class to clicked tag */
-            this.classList.add('active');
-        });
-    });
-});

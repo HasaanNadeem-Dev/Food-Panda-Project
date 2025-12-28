@@ -19,7 +19,6 @@
 
 .mobile-menu-content.active {
     display: flex;
-    /* Changed from block to flex */
     flex-direction: column;
     position: fixed;
     top: 0;
@@ -29,10 +28,8 @@
     height: 100%;
     background-color: white;
     z-index: 1001;
-    /* overflow-y: auto;  Moved to items */
     padding: 20px;
     box-sizing: border-box;
-    /* Necessary for correct height calculation */
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -40,7 +37,6 @@
 
 .mobile-menu-content::-webkit-scrollbar {
     display: none;
-    /* Chrome/Safari/Opera */
 }
 
 .mobile-menu-header {
@@ -48,15 +44,12 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
-    /* Gap between border and Home */
     padding-bottom: 20px;
     border-bottom: 1px solid #f0f0f0;
-    /* Border below image */
 }
 
 .mobile-menu-logo img {
     width: 180px;
-    /* Thora aur bara logo */
 }
 
 .mobile-menu-items {
@@ -64,15 +57,10 @@
     padding: 0;
     margin: 0;
     margin-top: 50px;
-    /* Gap from border */
     margin-bottom: 20px;
-    /* Gap at bottom */
     flex-grow: 1;
-    /* Take up available space */
     overflow-y: auto;
-    /* Scroll if content fits */
     scrollbar-width: none;
-    /* Hide scrollbar */
 }
 
 .mobile-menu-items::-webkit-scrollbar {
@@ -81,7 +69,6 @@
 
 .mobile-menu-items li {
     margin-bottom: 5px;
-    /* Adjust gap */
 }
 
 .mobile-menu-items li a {
@@ -97,9 +84,7 @@
 .mobile-menu-items li a:hover {
     color: #ff2b85;
     background-color: #fff5f9;
-    /* Light pink shade */
     padding-left: 20px;
-    /* Thora sa right pr */
 }
 
 /* Mobile Location Dropdown Styles within Menu */
@@ -118,9 +103,7 @@
 
 .mobile-location-item>a:hover {
     padding-left: 10px;
-    /* Reset to original padding, no shift */
     background-color: transparent;
-    /* Optional: remove bg if needed, or keep */
 }
 
 .mobile-location-item.active .mobile-country-list {
@@ -131,7 +114,6 @@
     padding-top: 20px;
     border-top: 1px solid #e0e0e0;
     margin-top: auto;
-    /* Push to bottom */
     width: 100%;
 }
 
@@ -144,7 +126,6 @@
     border-radius: 8px;
     font-weight: 600;
     margin-top: 0;
-    /* Removing extra top margin if any, controlled by padding/border above */
     cursor: pointer;
 }
 
@@ -206,7 +187,6 @@
         height: auto;
     }
 
-    /* Container for right-side items */
     .nav-right-container {
         display: flex;
         align-items: center;
@@ -282,7 +262,6 @@
 /* Tablet and Mobile Design */
 @media (max-width: 992px) {
 
-    /* Navigation */
     nav {
         justify-content: space-between;
         padding: 15px 0;
@@ -294,19 +273,16 @@
         width: 140px;
     }
 
-    /* Hide Desktop Elements */
     .nav-item,
     .button,
     .nav-icon {
         display: none !important;
     }
 
-    /* Show Hamburger */
     .hamburger {
         display: block;
     }
 
-    /* Footer */
     footer {
         padding: 40px 20px;
         text-align: left;
@@ -357,7 +333,6 @@
         gap: 20px;
     }
 
-    /* Copyright Section */
     .ft-down {
         flex-direction: column;
         align-items: flex-start;
@@ -384,7 +359,6 @@
 
 @media (max-width: 768px) {
 
-    /* Footer */
     .ft-item {
         flex-direction: column;
         align-items: flex-start;
@@ -401,7 +375,6 @@
     }
 
     footer div img {
-        /* User adjustment */
         display: block;
         margin-right: auto;
         padding-top: 40px;
@@ -442,7 +415,6 @@
     }
 
     footer div {
-        /* Content area expands */
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;

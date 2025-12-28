@@ -305,7 +305,6 @@ footer div img {
 
 .ft-item>div:nth-child(2) {
     margin-left: 170px;
-    /* Updated positioning */
     margin-right: auto;
 }
 
@@ -378,7 +377,6 @@ footer div img {
     color: #ff2b85;
 }
 
-/* Desktop Footer Margin */
 @media (min-width: 993px) {
     footer {
         margin-top: 40px;

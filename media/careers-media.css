@@ -9,15 +9,12 @@
 /* Tablet & Smaller Desktop (max-width: 992px) */
 @media (max-width: 992px) {
 
-    /* Navbar */
     .nav-menu {
         display: none !important;
-        /* Force hide default menu */
     }
 
     .nav-actions {
         display: none;
-        /* Hide saved jobs on mobile for cleaner look */
     }
 
     .lang-dropdown-wrapper {
@@ -29,7 +26,6 @@
         cursor: pointer;
         padding: 10px;
         z-index: 1002;
-        /* Above overlay */
         position: relative;
     }
 
@@ -42,7 +38,6 @@
         transition: 0.3s;
     }
 
-    /* Hamburger Animation when active */
     .hamburger.open span:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
@@ -91,7 +86,6 @@
 
     .mobile-menu-content.active {
         display: flex;
-        /* Changed to flex for vertical layout */
         transform: translateX(0);
     }
 
@@ -148,7 +142,6 @@
         width: 100%;
         padding: 12px;
         background-color: #D70F64;
-        /* Pink */
         color: white;
         border: none;
         border-radius: 8px;
@@ -161,7 +154,6 @@
         min-height: auto;
         padding: 40px 0 60px;
         background-color: #FFC2D6;
-        /* Ensure pink background persists */
     }
 
     .hero-container {
@@ -179,13 +171,10 @@
 
     .hero-text h1 {
         font-size: 28px;
-        /* Further reduced */
         line-height: 1.2;
         margin-bottom: 15px;
         white-space: normal;
-        /* Allow wrapping */
         padding: 0 10px;
-        /* Prevent edge touching */
     }
 
     .hero-text .hero-subheading {
@@ -202,18 +191,13 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         display: flex;
         padding: 5px;
-        /* Adjust padding */
         box-sizing: border-box;
-        /* Ensure padding includes in width */
     }
 
     .job-search-box input {
         font-size: 14px;
-        /* Prevent zoom on iOS */
         width: 100%;
-        /* Take available space */
         min-width: 0;
-        /* Flexbox fix */
     }
 
     .hero-visual {
@@ -224,10 +208,8 @@
         width: 100%;
         height: auto;
         max-width: 320px;
-        /* Constrain image width */
         margin: 20px auto 0;
         opacity: 1;
-        /* Remove transparency */
     }
 
     .hero-visual img {
@@ -240,14 +222,12 @@
     .info-section .container,
     .info-section.reverse .container {
         flex-direction: column-reverse !important;
-        /* Image on top */
         gap: 40px;
         text-align: center;
     }
 
     .info-section.reverse .container {
         flex-direction: column !important;
-        /* Reset for reverse to also have image top */
     }
 
     .info-section.reverse .info-image-wrapper {
@@ -270,11 +250,9 @@
         width: 100%;
         max-width: 450px;
         height: 450px;
-        /* Keep square-ish */
         margin: 0 auto;
     }
 
-    /* Hide complex pink backdrops on mobile/tablet to avoid overflow issues */
     .pink-backdrop,
     .reverse-backdrop {
         display: none;
@@ -282,7 +260,6 @@
 
     .btn-with-panda {
         margin-top: 40px;
-        /* More space for panda header */
         display: inline-block;
         width: auto;
         position: relative;
@@ -292,13 +269,11 @@
         width: 60px;
         top: -45px;
         left: 10px;
-        /* Align slightly inside left edge */
         right: auto;
     }
 
     .reverse-panda .panda-on-btn {
         left: 10px;
-        /* Match standard button */
         right: auto;
         top: -45px;
     }
@@ -316,21 +291,18 @@
 
     .stats-right img {
         height: 350px;
-        /* Smaller panda */
         margin: 0 auto;
     }
 
     /* Footer */
     .footer-content {
         grid-template-columns: repeat(2, 1fr);
-        /* 2x2 grid */
     }
 }
 
 /* Mobile (max-width: 768px) */
 @media (max-width: 768px) {
 
-    /* Hero */
     .hero-text h1 {
         font-size: 32px;
     }
@@ -340,32 +312,25 @@
         height: 36px;
     }
 
-    /* Mission */
     .mission-section blockquote {
         font-size: 22px;
         white-space: normal;
     }
 
-    /* Stats - 2 Column Grid for Mobile */
     .stats-left {
         grid-template-columns: repeat(2, 1fr);
-        /* 2 columns */
         gap: 15px;
-        /* Adjust gap */
     }
 
     .stat-box {
         width: 100%;
         max-width: none;
-        /* remove max-width constraint */
         margin: 0;
         height: 140px;
-        /* Adjust height for smaller screens */
     }
 
     .stat-box .num {
         font-size: 32px;
-        /* Smaller font on mobile */
     }
 
     .stat-box .label {
@@ -380,19 +345,16 @@
 
     .role-item {
         max-width: 100%;
-        /* Full width */
         min-width: auto;
     }
 
     /* Stories */
     .stories-grid {
         grid-template-columns: 1fr;
-        /* 1 column */
     }
 
     .story-card {
         min-height: auto;
-        /* Let content dictate height */
     }
 
     .story-img {
@@ -402,9 +364,7 @@
     /* Footer */
     .footer-content {
         grid-template-columns: 1fr;
-        /* Stack all */
         text-align: left;
-        /* Keep left aligned as requested */
     }
 
     .careers-footer {
@@ -423,22 +383,18 @@
     .hero-container,
     .nav-container {
         padding: 0 40px;
-        /* Ensure padding on sides */
     }
 
     .role-item {
-        /* Ensure cards don't get too wide on very large screens */
         max-width: 450px;
     }
 
     .nav-container {
         padding: 25px 40px;
-        /* Bigger navbar */
     }
 
     .careers-hero {
         padding: 100px 0;
-        /* Bigger hero section */
     }
 
     .hero-container {
@@ -446,12 +402,10 @@
     }
 
     .story-card {
-        /* Ensure consistent height */
         height: 100%;
     }
 
     .stories-grid {
-        /* Ensure Grid layout is respected */
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 30px;
@@ -469,7 +423,6 @@
 
     .hero-text h1 {
         font-size: 56px;
-        /* Larger font for big screens */
     }
 
     .info-text h3 {

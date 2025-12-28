@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.position = 'fixed';
         document.body.style.top = `-${savedScrollY}px`;
         document.body.style.width = '100%';
-        document.body.style.overflowY = 'scroll'; // Prevent layout shift
+        document.body.style.overflowY = 'scroll';
     }
 
     function unlockScroll() {
@@ -25,13 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const isActive = mobileMenu.classList.contains('active');
 
         if (!isActive) {
-            // Open Menu
             mobileMenu.classList.add('active');
             overlay.classList.add('active');
             hamburger.classList.add('open');
             lockScroll();
         } else {
-            // Close Menu
             mobileMenu.classList.remove('active');
             overlay.classList.remove('active');
             hamburger.classList.remove('open');
@@ -43,13 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
         hamburger.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
 
-        // Close on link click
         const menuLinks = mobileMenu.querySelectorAll('a');
         menuLinks.forEach(link => {
             link.addEventListener('click', toggleMenu);
         });
     }
-
 
     /* Stats Animation */
     const statsSection = document.querySelector('.stats-bg-section');
@@ -64,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     statsNumbers.forEach(num => startCount(num));
                 }
             });
-        }, { threshold: 0.1 }); // Trigger when 10% visible (better for mobile)
+        }, { threshold: 0.1 });
 
         observer.observe(statsSection);
     }
@@ -92,12 +88,10 @@ document.addEventListener('DOMContentLoaded', function () {
         requestAnimationFrame(update);
     }
 
-
     /* Language Dropdown (Desktop Only) */
     const langDropdown = document.getElementById('langDropdown');
     if (langDropdown) {
         langDropdown.addEventListener('click', function (e) {
-            // Only toggle if visible
             if (window.getComputedStyle(this).display !== 'none') {
                 e.stopPropagation();
                 this.classList.toggle('expanded');

@@ -1,4 +1,3 @@
-/* Partners Page JavaScript */
 document.addEventListener('DOMContentLoaded', function () {
     if (window.__NAV_JS_ACTIVE) return;
     const locationBtn = document.getElementById('locationBtn');
@@ -53,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
     /* Mobile Location Functionality */
     const mobileLocationLink = document.getElementById('mobileLocationLink');
     const mobileLocationItem = document.querySelector('.mobile-location-item');
@@ -86,8 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
-
 /* FAQ Functionality */
 document.addEventListener('DOMContentLoaded', function () {
     const faqQuestions = document.querySelectorAll('.faq-question');
@@ -96,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function () {
         question.addEventListener('click', function () {
             const faqItem = this.parentElement;
             const isActive = faqItem.classList.contains('active');
-            /* Close all FAQ items */
+
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
             });
-            /* Open clicked item if it wasn't active */
+
             if (!isActive) {
                 faqItem.classList.add('active');
             }

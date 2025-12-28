@@ -1,12 +1,8 @@
 /* Responsive Design for partners.html */
 
-/* Global styles for Mobile Menu - Removed (handled by nav-footer-media.css) */
-
-
 /* Tablet and Mobile Design */
 @media (max-width: 992px) {
 
-    /* Navigation */
     nav {
         justify-content: space-between;
         padding: 15px 0;
@@ -28,7 +24,6 @@
         display: block;
     }
 
-    /* Banner */
     .banner-img {
         height: auto;
         padding: 40px 20px;
@@ -52,13 +47,9 @@
         padding: 12px 20px;
     }
 
-    /* Mobile Menu styles removed - handled by nav-footer-media.css */
-
-
 }
 
 /* Additional Media Queries */
-
 @media (max-width: 1024px) {
 
     .benefits-grid,
@@ -166,11 +157,6 @@
         height: 200px;
     }
 
-    /* Benefits cards mobile height */
-    .benefit-image {
-        height: 200px;
-    }
-
     .hero-content h1 {
         font-size: 28px;
     }
@@ -205,16 +191,13 @@
         max-width: 1700px;
         margin-left: auto;
         margin-right: auto;
-
         position: relative;
     }
 
     footer div {
-        /* Content area expands (gets "bigger") */
         max-width: 1200px;
         margin-left: auto;
         margin-right: auto;
-
     }
 
     .ft-up {

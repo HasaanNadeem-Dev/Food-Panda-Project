@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!slider || !container) return;
 
-    // --- Clone Strategy for Infinite Loop ---
-    // [Clone Set End] [Original Set] [Clone Set Start]
-
     let originalCards = Array.from(document.querySelectorAll('.card'));
     if (originalCards.length === 0) return;
 
@@ -17,42 +14,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const cardWidthWithGap = originalCards[0].offsetWidth + gap;
     const totalOriginals = originalCards.length;
 
-    // We clone 2 full sets: one before and one after for simplicity (ensure enough buffer)
-    // Or just 4-5 cards if many, but let's clone the whole set once for safety if not too huge.
-    // If set is small (e.g. 5 cards), cloning whole set is fine.
-
     originalCards.forEach(card => {
         const clone = card.cloneNode(true);
         clone.classList.add('clone-end');
         slider.appendChild(clone);
     });
 
-    // To prepend, we must insert before first child
     originalCards.slice().reverse().forEach(card => {
         const clone = card.cloneNode(true);
         clone.classList.add('clone-start');
         slider.insertBefore(clone, slider.firstChild);
     });
 
-    // Now cards structure: [Clones Start (N)] [Originals (N)] [Clones End (N)]
-    // Current Index 0 should point to the FIRST ORIGINAL card.
-    // Index offset = N
-
-    let currentIndex = totalOriginals; // Point to start of originals
-    const totalItems = slider.children.length; // 3N
-
+    let currentIndex = totalOriginals;
     let isTransitioning = false;
     let autoPlayInterval;
     let isPaused = false;
 
-    // --- Drag Variables ---
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
     let prevTranslate = 0;
     let animationID;
-
-    // --- Positioning ---
 
     function getPositionX(event) {
         return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
@@ -63,10 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateSliderPosition(animate = true) {
-        // -1 * index * width
-        // But wait, we need to center? The original CSS centered `.card-slider` maybe?
-        // Assuming slider flows left.
-
         currentTranslate = -(currentIndex * cardWidthWithGap);
         prevTranslate = currentTranslate;
 
@@ -79,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setSliderPosition();
     }
 
-    // --- Auto Play ---
     function startAutoPlay() {
         if (autoPlayInterval) clearInterval(autoPlayInterval);
         autoPlayInterval = setInterval(() => {
@@ -96,8 +74,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // --- Movement Logic ---
-
     function moveToNext() {
         if (isTransitioning) return;
         currentIndex++;
@@ -112,33 +88,21 @@ document.addEventListener('DOMContentLoaded', function () {
         updateSliderPosition(true);
     }
 
-    // --- Loop Check (Transition End) ---
     slider.addEventListener('transitionend', () => {
         isTransitioning = false;
 
-        // Logic:
-        // [Clone Start (0..N-1)] [Originals (N..2N-1)] [Clone End (2N..3N-1)]
-
-        // If we drift into Close End (index >= 2N)
         if (currentIndex >= (totalOriginals * 2)) {
-            // Jump back to start of originals (+ whatever offset we went past)
-            // Actually, if we hit 2N (first clone of end), it's same as N (first original)
-
             slider.style.transition = 'none';
             currentIndex = currentIndex - totalOriginals;
             updateSliderPosition(false);
         }
 
-        // If we drift into Clone Start (index < N)
         if (currentIndex < totalOriginals) {
-            // Jump forward to end of originals
             slider.style.transition = 'none';
             currentIndex = currentIndex + totalOriginals;
             updateSliderPosition(false);
         }
     });
-
-    // --- Drag Implementation ---
 
     function touchStart(event) {
         if (isTransitioning) return;
@@ -148,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
         stopAutoPlay();
         startPos = getPositionX(event);
 
-        // Disable transition for live drag
         slider.style.transition = 'none';
 
         animationID = requestAnimationFrame(animation);
@@ -170,17 +133,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const movedBy = currentTranslate - prevTranslate;
 
-        // Snap logic
-        // If moved significantly (> 50px), go next/prev
         if (movedBy < -50) {
             currentIndex++;
         } else if (movedBy > 50) {
             currentIndex--;
         }
 
-        // If moved just a little, stay same (which snaps back effectively)
-
-        // Re-enable transition and go to final index
         isTransitioning = true;
         updateSliderPosition(true);
     }
@@ -190,13 +148,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isDragging) requestAnimationFrame(animation);
     }
 
-    // Listeners
-    // Touch
     slider.addEventListener('touchstart', touchStart, { passive: true });
     slider.addEventListener('touchmove', touchMove, { passive: true });
     slider.addEventListener('touchend', touchEnd);
 
-    // Mouse
     slider.addEventListener('mousedown', touchStart);
     slider.addEventListener('mousemove', touchMove);
     slider.addEventListener('mouseup', touchEnd);
@@ -204,20 +159,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (isDragging) touchEnd();
     });
 
-    // Prevent context menu interactions interfering
     slider.addEventListener('contextmenu', e => {
         e.preventDefault();
         e.stopPropagation();
         return false;
     });
 
-    // Prevent default drag of images
     slider.querySelectorAll('img').forEach(img => {
         img.addEventListener('dragstart', e => e.preventDefault());
     });
 
-
-    // --- Buttons ---
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
             stopAutoPlay();
@@ -234,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- Hover ---
     container.addEventListener('mouseenter', () => {
         isPaused = true;
         stopAutoPlay();
@@ -244,17 +194,9 @@ document.addEventListener('DOMContentLoaded', function () {
         startAutoPlay();
     });
 
-    // --- Init ---
-    // Start at valid index (N)
     updateSliderPosition(false);
     startAutoPlay();
 });
-
-/* Location Dropdown Functionality */
-/* Location Dropdown Functionality moved to nav-footer.js */
-
-/* Mobile Menu Functionality */
-/* Mobile Menu Functionality moved to nav-footer.js */
 
 /* Filters Popup Functionality */
 document.addEventListener('DOMContentLoaded', function () {

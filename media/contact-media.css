@@ -1,12 +1,8 @@
 /* Responsive Design for contact.html */
 
-/* Global styles for Mobile Menu - Removed (handled by nav-footer-media.css) */
-
-
 /* Tablet and Mobile Design */
 @media (max-width: 992px) {
 
-    /* Navigation */
     nav {
         justify-content: space-between;
         padding: 15px 0;
@@ -28,7 +24,6 @@
         display: block;
     }
 
-    /* Banner */
     .banner-img {
         height: 250px;
         display: flex;
@@ -43,7 +38,6 @@
         text-align: center;
     }
 
-    /* Contact Form */
     .contact {
         flex-direction: column;
         padding-top: 40px;
@@ -63,10 +57,6 @@
         margin-top: 60px;
     }
 
-
-
-
-
     .name input[type="text"],
     .email input[type="email"],
     textarea {
@@ -80,7 +70,6 @@
     }
 
     .left>div:first-child {
-        /* Heading wrapper */
         order: 1;
         width: 100%;
         padding: 0 20px;
@@ -96,7 +85,6 @@
     }
 
     .left>div:not(:first-child) {
-        /* Form fields + submit button */
         order: 3;
         width: 100%;
         padding: 0 20px;
@@ -117,12 +105,7 @@
     .anc p {
         font-size: 16px;
     }
-
-    /* Mobile Menu and Footer styles removed - handled by nav-footer-media.css */
-
 }
-
-/* Media Queries */
 
 @media (max-width: 1024px) {
     .nav-logo img {

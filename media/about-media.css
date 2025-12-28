@@ -12,17 +12,14 @@
     .information-content,
     .banner-container {
         max-width: 1400px;
-        /* Wider container for large screens */
     }
 
     .banner-img h1 {
         font-size: 72px;
-        /* Margin handled by container */
     }
 
     .information-content {
         padding: 0 50px;
-        /* Match indentation of fv/jt containers */
     }
 
     .information h2 {
@@ -35,25 +32,20 @@
    ========================================= */
 @media (min-width: 992px) {
 
-    /* Banner */
     .banner-img {
         height: 500px;
     }
 
     .banner-container {
         padding: 0 70px;
-        /* Align text with other sections */
     }
 
-    /* Layouts become side-by-side */
     .growing-partners .container {
         flex-direction: row;
         align-items: flex-start;
-        /* Align top for better text flow if image is tall */
         justify-content: space-between;
         gap: 60px;
         padding: 0 50px;
-        /* Align with other sections */
     }
 
     .fv-container {
@@ -68,7 +60,6 @@
         padding: 0 50px;
     }
 
-    /* Section Specifics */
     .jt-text {
         order: 1;
     }
@@ -90,8 +81,6 @@
         font-size: 56px;
         margin-left: 40px;
     }
-
-
 
     .values h2 {
         font-size: 40px;
@@ -118,7 +107,6 @@
         justify-content: center;
     }
 
-    /* Ensure stacking */
     .growing-partners .container,
     .fv-container,
     .jt-container {
@@ -130,7 +118,6 @@
     .jt-image {
         width: 100%;
         max-width: 700px;
-        /* Limit image width on tablet */
         margin: 0 auto;
     }
 }
@@ -140,7 +127,6 @@
    ========================================= */
 @media (max-width: 768px) {
 
-    /* Banner */
     .banner-img {
         height: 350px;
     }
@@ -150,7 +136,6 @@
         margin-left: 20px;
     }
 
-    /* Section Padding */
     .information,
     .growing-partners,
     .values,
@@ -158,10 +143,8 @@
         padding: 60px 20px;
     }
 
-    /* Reduce Section Padding for Feature Value on Mobile */
     .feature-value {
         padding-top: 30px;
-        /* Reduced from 60px to move section up */
         padding-bottom: 60px;
     }
 
@@ -169,26 +152,21 @@
         font-size: 32px;
     }
 
-    /* Feature Value & Join Team - Alignments */
     .fv-text h2,
     .jt-text h2 {
         font-size: 32px;
     }
 
-    /* Force Feature Value Slide Order on Mobile */
     .fv-slider .fv-slide {
         flex-direction: column;
         justify-content: flex-start;
-        /* Start from top */
         text-align: center;
         padding-top: 0;
-        /* Remove top padding from slide */
     }
 
     .fv-slider .fv-image {
         order: 1;
         margin-bottom: 5px;
-        /* Minimal margin to text */
         width: 100%;
         padding: 0;
         display: flex;
@@ -198,19 +176,15 @@
     .fv-slider .fv-image img {
         width: 100%;
         max-width: 90%;
-        /* Allow it to be bigger, almost full width */
         height: auto;
         object-fit: contain;
         max-height: 350px;
-        /* Increased max height */
     }
 
     .fv-slider .fv-text {
         order: 2;
         padding: 0 5px;
-        /* Tighter padding */
         margin-top: -10px;
-        /* Pull text up slightly if needed */
     }
 
     .fv-slider .fv-text h2 {
@@ -223,7 +197,6 @@
         text-align: center;
         margin-bottom: 0;
         font-size: 14px;
-        /* Ensure readable but compact */
     }
 
     /* Values Section Mobile Responsive */
@@ -233,27 +206,18 @@
 
     .vl-group {
         flex-direction: row;
-        /* Allow side-by-side */
         flex-wrap: wrap;
-        /* Wrap if needed */
         align-items: center;
         justify-content: center;
         gap: 10px;
-        /* Smaller gap for mobile */
     }
 
     .vl-btn {
         width: auto;
-        /* Buttons take content width (pill shape) */
         max-width: 100%;
-        /* Prevent overflow if text is huge */
         text-align: center;
         font-size: 11px;
-        /* Reduced to ensure single line fits */
         padding: 8px 15px;
-        /* Compact padding */
         white-space: nowrap;
-        /* Force single line */
-        /* If text is too long for screen, text-overflow could be an option, but user wants "aik line me" so smaller font is key */
     }
 }

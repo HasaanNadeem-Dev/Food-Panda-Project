@@ -65,8 +65,6 @@ p {
     color: white;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     margin: 0;
-    /* Align perfectly with container padding */
-    /* Align handled by container */
 }
 
 /* Information Section */
@@ -79,7 +77,6 @@ p {
 
 .information-content {
     max-width: 1200px;
-    /* Aligned with other sections */
     width: 100%;
 }
 
@@ -98,7 +95,6 @@ p {
 .growing-partners {
     background-color: #f7f7f7;
     padding: 60px 20px;
-    /* Reduced top padding for mobile */
     display: flex;
     justify-content: center;
 }
@@ -113,31 +109,25 @@ p {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* Wrapper handles the column layout for mobile naturally */
 }
 
 .gp-slider {
     position: relative;
     width: 100%;
-    /* Mobile: Auto height to fit stacked content */
     height: auto;
     overflow: hidden;
 }
 
-/* Unified Slide */
 .gp-slide {
-    /* Mobile: Relative/Stacked */
     position: relative;
     width: 100%;
     display: none;
-    /* Hide non-active slides */
     flex-direction: column;
     gap: 20px;
 }
 
 .gp-slide.active {
     display: flex;
-    /* Show active slide */
     animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -153,12 +143,10 @@ p {
 
 .gp-text {
     order: 2;
-    /* Mobile: Text Second */
 }
 
 .gp-text h3 {
     font-size: 32px;
-    /* Mobile Heading */
     margin-bottom: 15px;
     color: #000;
     text-align: center;
@@ -174,10 +162,8 @@ p {
 
 .gp-image {
     order: 1;
-    /* Mobile: Image First */
     width: 100%;
     height: 300px;
-    /* Mobile Image Height */
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
@@ -197,9 +183,7 @@ p {
     gap: 15px;
     margin-top: 10px;
     justify-content: center;
-    /* Mobile: Center Nav */
     order: 3;
-    /* Mobile: Nav Last (after slider content) */
 }
 
 .nav-arrow {
@@ -235,10 +219,7 @@ p {
     transform: scale(1.2);
 }
 
-
-/* ===========================
-   Desktop Layout (min-width: 992px)
-   =========================== */
+/* Desktop Layout (min-width: 992px) */
 @media (min-width: 992px) {
     .growing-partners {
         padding: 100px 20px;
@@ -246,31 +227,24 @@ p {
 
     .gp-slider-wrapper {
         min-height: 400px;
-        /* Match Image Height */
     }
 
     .gp-slider {
         height: 400px;
-        /* Fixed Height */
         background: transparent;
     }
 
     .gp-slide {
         display: flex;
-        /* Reset display */
         position: absolute;
-        /* Absolute for sliding/cross-fade */
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         flex-direction: row;
-        /* Side by side */
         align-items: flex-start;
-        /* Align Top */
         justify-content: space-between;
         gap: 60px;
-        /* Desktop Animation: Slide/Transform */
         opacity: 0;
         visibility: hidden;
         transform: translateX(100%);
@@ -282,19 +256,15 @@ p {
         visibility: visible;
         transform: translateX(0);
         animation: none;
-        /* Use transition */
         display: flex;
     }
 
     .gp-text {
         order: 1;
-        /* Desktop: Text Left */
         flex: 1;
         height: 100%;
         position: relative;
-        /* For alignment context if needed */
         text-align: left;
-        /* Reset alignment */
         padding-right: 0;
         margin-top: 50px;
     }
@@ -304,7 +274,6 @@ p {
         margin-bottom: 25px;
         text-align: left;
         margin-top: 0;
-        /* Strict Top Alignment */
         line-height: 1.1;
     }
 
@@ -312,62 +281,39 @@ p {
         font-size: 18px;
         text-align: left;
         max-width: 95%;
-        /* Prevent full width stretching */
     }
 
     .gp-image {
         order: 2;
-        /* Desktop: Image Right */
         flex: 1;
         height: 400px;
-        /* Fixed Height */
         border-radius: 4px;
-        /* Sharper corners */
         margin-bottom: 0;
         display: flex;
-        /* Enable Flex to align internal image */
         justify-content: flex-end;
-        /* Align image to the right */
         align-items: center;
-        /* Center vertically if height < 100% */
     }
 
     .gp-image img {
         border-radius: 4px;
-        /* Ensure radius on the image itself */
-        /* Width/Height 85% restored for desktop */
         width: 85%;
         height: 85%;
     }
 
-    /* Absolute Positioning for Controls on Desktop */
-    /* Absolute Positioning for Controls on Desktop */
     .slider-nav {
         position: relative;
         bottom: 0;
-        /* Bottom Alignment */
-        /* Align with the Image (which is on the right, 80% width) */
         left: 0;
         right: auto;
-        /* Image is ~80% of 50% column ~ 40% of total. 
-               Let's set width to match image area roughly or use flex alignment */
         width: 100%;
-        /* 80% of the 50% column */
         margin-top: -120px;
         justify-content: flex-start;
-        /* Align dots/arrows to the start of the image */
         z-index: 10;
         background: transparent;
-        /* Compensate if image has specific right padding? 
-               Parent has 20px padding. right: 0 is relative to container (1200px).
-               Image is in right column. */
         padding-left: 0;
-        /* Slight adjustment */
     }
 
-    /* Old values logic removed - now handled in main Values block */
     .slider-nav {
-        /* Keep slider nav logic */
         position: relative;
         bottom: 0;
         left: 0;
@@ -400,7 +346,6 @@ p {
     font-weight: 700;
 }
 
-/* Base Layout (Mobile): Flex & Wrap */
 .vl-group {
     display: flex;
     flex-wrap: wrap;
@@ -409,7 +354,6 @@ p {
     width: 100%;
 }
 
-/* Mobile: Treat wrappers as transparent so buttons mix freely */
 .vl-row-1,
 .vl-row-2,
 .vl-row-3,
@@ -417,7 +361,6 @@ p {
     display: contents;
 }
 
-/* Button Styles */
 .vl-btn {
     padding: 10px 20px;
     background-color: transparent;
@@ -428,7 +371,6 @@ p {
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
-    /* Keep single line */
     transition: all 0.3s ease;
 }
 
@@ -438,7 +380,6 @@ p {
     transform: translateY(-2px);
 }
 
-/* Black Button Variant */
 .vl-black {
     background-color: #000;
     border-color: #000;
@@ -450,9 +391,7 @@ p {
     border-color: #333;
 }
 
-/* ===========================
-   Desktop Layout Override
-   =========================== */
+/* Desktop Layout Override */
 @media (min-width: 992px) {
     .values {
         padding: 100px 20px;
@@ -463,17 +402,13 @@ p {
         margin-bottom: 60px;
     }
 
-    /* Desktop: 4-Tier Layout (1-2-2-1) */
     .vl-group {
         display: flex;
         flex-direction: column;
-        /* Stack Rows vertically */
         align-items: center;
         gap: 25px;
-        /* Gap between rows */
     }
 
-    /* Rows are Flex containers on desktop */
     .vl-row-1,
     .vl-row-2,
     .vl-row-3,
@@ -481,15 +416,12 @@ p {
         display: flex;
         justify-content: center;
         gap: 25px;
-        /* Gap between buttons in a row */
         width: 100%;
         width: auto;
-        /* Allow shrink fit */
     }
 
     .vl-btn {
         font-size: 15px;
-        /* Larger font on desktop */
         padding: 10px 24px;
     }
 }
@@ -508,7 +440,6 @@ p {
     position: relative;
 }
 
-/* Slider Wrapper */
 .fv-slider {
     position: relative;
     width: 100%;

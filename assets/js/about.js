@@ -1,9 +1,5 @@
-/**
- * About Page Scripts
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-    // === Growing Partners Slider Functionality (Unified) ===
+    /* Growing Partners Slider Functionality */
     const gpSlides = document.querySelectorAll('.gp-slide');
     const gpDots = document.querySelectorAll('.slider-dots .dot');
     const gpPrevBtn = document.querySelector('.nav-arrow.prev');
@@ -13,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const gpTotalSlides = gpSlides.length;
     let gpAutoPlayInterval;
 
-    // Initial Setup
     gpSlides.forEach((slide, index) => {
         if (index === 0) {
             slide.classList.add('active');
@@ -35,21 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function slideGpNext() {
-        // Current Slide Exits Left
         const currentSlide = gpSlides[gpCurrentIndex];
         currentSlide.style.transition = 'transform 0.5s ease-in-out';
         currentSlide.style.transform = 'translateX(-100%)';
         currentSlide.classList.remove('active');
 
-        // Next Slide Enters from Right
         let nextIndex = gpCurrentIndex + 1;
         if (nextIndex >= gpTotalSlides) nextIndex = 0;
 
         const nextSlide = gpSlides[nextIndex];
-        nextSlide.style.transition = 'none'; // Teleport to start position
+        nextSlide.style.transition = 'none';
         nextSlide.style.transform = 'translateX(100%)';
 
-        void nextSlide.offsetWidth; // Force Reflow
+        void nextSlide.offsetWidth;
 
         nextSlide.style.transition = 'transform 0.5s ease-in-out';
         nextSlide.style.transform = 'translateX(0)';
@@ -60,13 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function slideGpPrev() {
-        // Current Slide Exits Right
         const currentSlide = gpSlides[gpCurrentIndex];
         currentSlide.style.transition = 'transform 0.5s ease-in-out';
         currentSlide.style.transform = 'translateX(100%)';
         currentSlide.classList.remove('active');
 
-        // Prev Slide Enters from Left
         let prevIndex = gpCurrentIndex - 1;
         if (prevIndex < 0) prevIndex = gpTotalSlides - 1;
 
@@ -96,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         startGpAutoPlay();
     }
 
-    // Event Listeners
     if (gpNextBtn) {
         gpNextBtn.addEventListener('click', () => {
             slideGpNext();
@@ -113,11 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     gpDots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            // Determine direction
             if (index > gpCurrentIndex) {
-                // Like Next, but simpler: loop until index is reached? 
-                // OR: Better logic for direct jump.
-                // For direct jump:
                 const currentSlide = gpSlides[gpCurrentIndex];
                 const targetSlide = gpSlides[index];
 
@@ -156,20 +142,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Start
     if (gpSlides.length > 0) {
         startGpAutoPlay();
     }
 
-
-    // === Feature Value Slider Functionality (Swipe & Drag) ===
+    /* Feature Value Slider Functionality */
     const fvSlider = document.querySelector('.fv-slider');
     const fvSlides = document.querySelectorAll('.fv-slide');
     let fvCurrentIndex = 0;
     const fvTotalSlides = fvSlides.length;
     let fvAutoPlayInterval;
 
-    // Initial setup
     fvSlides.forEach((slide, index) => {
         if (index === 0) {
             slide.classList.add('active');
@@ -240,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startFvAutoPlay();
     }
 
-    // === Drag / Swipe Logic for FV Slider ===
+    /* Drag / Swipe Logic for FV Slider */
     let isDragging = false;
     let startPos = 0;
     let movedBy = 0;

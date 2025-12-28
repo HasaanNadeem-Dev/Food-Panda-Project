@@ -1,4 +1,3 @@
-/* Contact Page JavaScript */
 document.addEventListener('DOMContentLoaded', function () {
     if (window.__NAV_JS_ACTIVE) return;
     const locationBtn = document.getElementById('locationBtn');
@@ -53,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
     /* Mobile Location Functionality */
     const mobileLocationLink = document.getElementById('mobileLocationLink');
     const mobileLocationItem = document.querySelector('.mobile-location-item');
@@ -85,4 +85,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-

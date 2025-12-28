@@ -1,5 +1,3 @@
-/* Newsroom Page JavaScript - Filter Logic */
-
 document.addEventListener('DOMContentLoaded', function () {
     const filterButtons = document.querySelectorAll('.filter-tag');
     const newsCards = document.querySelectorAll('.news-card');
@@ -8,9 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (filterButtons.length > 0) {
         filterButtons.forEach(button => {
             button.addEventListener('click', function () {
-                // Remove active class from all buttons
                 filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
                 this.classList.add('active');
 
                 const filterValue = this.getAttribute('data-filter');
@@ -21,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (filterValue === 'all' || filterValue === cardCategory) {
                         card.style.display = 'flex';
-                        // Add fade-in animation
                         card.style.opacity = '0';
                         setTimeout(() => {
                             card.style.opacity = '1';
@@ -32,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
 
-                // Show/Hide No Results Message
                 if (visibleCount === 0) {
                     if (noResultsMsg) noResultsMsg.style.display = 'block';
                 } else {

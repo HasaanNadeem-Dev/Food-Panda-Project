@@ -1,4 +1,3 @@
-/* Nav and Footer JS */
 window.__NAV_JS_ACTIVE = true;
 document.addEventListener('DOMContentLoaded', function () {
     const locationBtn = document.getElementById('locationBtn');
@@ -84,11 +83,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    console.log('Nav-Footer module loaded');
 });
 
-/* Mobile Menu Functionality (Moved from index.js) */
+/* Mobile Menu Functionality */
 document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.querySelector('.hamburger');
     const mobileMenu = document.getElementById('mobileMenuContent');
@@ -138,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     overlay.addEventListener('click', toggleMenu);
-    // Close on link click
+
     const menuLinks = mobileMenu.querySelectorAll('a:not(#mobileLocationLink)');
     menuLinks.forEach(link => {
         link.addEventListener('click', toggleMenu);

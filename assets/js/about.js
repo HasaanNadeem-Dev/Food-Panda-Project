@@ -1,131 +1,286 @@
-/* Text Slider Functionality */
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
+/**
+ * About Page Scripts
+ */
 
-document.addEventListener('DOMContentLoaded', function() {
-    showSlide(currentSlide);
-    
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            currentSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
-            showSlide(currentSlide);
-        });
-    }
-    
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            currentSlide = currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
-            showSlide(currentSlide);
-        });
-    }
-    
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            currentSlide = index;
-            showSlide(currentSlide);
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    // === Growing Partners Slider Functionality (Unified) ===
+    const gpSlides = document.querySelectorAll('.gp-slide');
+    const gpDots = document.querySelectorAll('.slider-dots .dot');
+    const gpPrevBtn = document.querySelector('.nav-arrow.prev');
+    const gpNextBtn = document.querySelector('.nav-arrow.next');
+
+    let gpCurrentIndex = 0;
+    const gpTotalSlides = gpSlides.length;
+    let gpAutoPlayInterval;
+
+    // Initial Setup
+    gpSlides.forEach((slide, index) => {
+        if (index === 0) {
+            slide.classList.add('active');
+            slide.style.transform = 'translateX(0)';
+        } else {
+            slide.classList.remove('active');
+            slide.style.transform = 'translateX(100%)';
+        }
     });
 
-    var mobileMenu = document.getElementById('mobileMenuContent');
-    var mobileLocationItem = mobileMenu ? mobileMenu.querySelector('.mobile-location-item') : null;
-    var mobileLocationLink = document.getElementById('mobileLocationLink');
-    if (mobileLocationItem && mobileLocationLink) {
-        mobileLocationLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            mobileLocationItem.classList.toggle('active');
-        });
-        document.addEventListener('click', function(e) {
-            if (mobileLocationItem.classList.contains('active') && !mobileLocationItem.contains(e.target)) {
-                mobileLocationItem.classList.remove('active');
+    function updateGpDots(index) {
+        gpDots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
             }
         });
-        var countryLinks = mobileLocationItem.querySelectorAll('.mobile-country-list a');
-        countryLinks.forEach(function(link) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                var name = this.getAttribute('data-country') || this.textContent;
-                var txt = mobileLocationLink.querySelector('.location-text');
-                if (txt) txt.textContent = name;
-                mobileLocationItem.classList.remove('active');
-            });
+    }
+
+    function slideGpNext() {
+        // Current Slide Exits Left
+        const currentSlide = gpSlides[gpCurrentIndex];
+        currentSlide.style.transition = 'transform 0.5s ease-in-out';
+        currentSlide.style.transform = 'translateX(-100%)';
+        currentSlide.classList.remove('active');
+
+        // Next Slide Enters from Right
+        let nextIndex = gpCurrentIndex + 1;
+        if (nextIndex >= gpTotalSlides) nextIndex = 0;
+
+        const nextSlide = gpSlides[nextIndex];
+        nextSlide.style.transition = 'none'; // Teleport to start position
+        nextSlide.style.transform = 'translateX(100%)';
+
+        void nextSlide.offsetWidth; // Force Reflow
+
+        nextSlide.style.transition = 'transform 0.5s ease-in-out';
+        nextSlide.style.transform = 'translateX(0)';
+        nextSlide.classList.add('active');
+
+        gpCurrentIndex = nextIndex;
+        updateGpDots(gpCurrentIndex);
+    }
+
+    function slideGpPrev() {
+        // Current Slide Exits Right
+        const currentSlide = gpSlides[gpCurrentIndex];
+        currentSlide.style.transition = 'transform 0.5s ease-in-out';
+        currentSlide.style.transform = 'translateX(100%)';
+        currentSlide.classList.remove('active');
+
+        // Prev Slide Enters from Left
+        let prevIndex = gpCurrentIndex - 1;
+        if (prevIndex < 0) prevIndex = gpTotalSlides - 1;
+
+        const prevSlide = gpSlides[prevIndex];
+        prevSlide.style.transition = 'none';
+        prevSlide.style.transform = 'translateX(-100%)';
+
+        void prevSlide.offsetWidth;
+
+        prevSlide.style.transition = 'transform 0.5s ease-in-out';
+        prevSlide.style.transform = 'translateX(0)';
+        prevSlide.classList.add('active');
+
+        gpCurrentIndex = prevIndex;
+        updateGpDots(gpCurrentIndex);
+    }
+
+    function startGpAutoPlay() {
+        if (gpAutoPlayInterval) clearInterval(gpAutoPlayInterval);
+        gpAutoPlayInterval = setInterval(() => {
+            slideGpNext();
+        }, 5000);
+    }
+
+    function resetGpAutoPlay() {
+        clearInterval(gpAutoPlayInterval);
+        startGpAutoPlay();
+    }
+
+    // Event Listeners
+    if (gpNextBtn) {
+        gpNextBtn.addEventListener('click', () => {
+            slideGpNext();
+            resetGpAutoPlay();
         });
     }
-});
 
-/* Mobile Menu Functionality */
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.getElementById('mobileMenuContent');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const closeBtn = document.getElementById('mobileMenuClose');
-    
-    if (!hamburger || !mobileMenu || !overlay) return;
-
-    let savedScrollY = 0;
-
-    function lockScroll() {
-        savedScrollY = window.scrollY || window.pageYOffset || 0;
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${savedScrollY}px`;
-        document.body.style.width = '100%';
+    if (gpPrevBtn) {
+        gpPrevBtn.addEventListener('click', () => {
+            slideGpPrev();
+            resetGpAutoPlay();
+        });
     }
 
-    function unlockScroll() {
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, savedScrollY || 0);
+    gpDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            // Determine direction
+            if (index > gpCurrentIndex) {
+                // Like Next, but simpler: loop until index is reached? 
+                // OR: Better logic for direct jump.
+                // For direct jump:
+                const currentSlide = gpSlides[gpCurrentIndex];
+                const targetSlide = gpSlides[index];
+
+                currentSlide.style.transition = 'transform 0.5s ease-in-out';
+                currentSlide.style.transform = 'translateX(-100%)';
+                currentSlide.classList.remove('active');
+
+                targetSlide.style.transition = 'none';
+                targetSlide.style.transform = 'translateX(100%)';
+                void targetSlide.offsetWidth;
+                targetSlide.style.transition = 'transform 0.5s ease-in-out';
+                targetSlide.style.transform = 'translateX(0)';
+                targetSlide.classList.add('active');
+
+                gpCurrentIndex = index;
+                updateGpDots(index);
+            } else if (index < gpCurrentIndex) {
+                const currentSlide = gpSlides[gpCurrentIndex];
+                const targetSlide = gpSlides[index];
+
+                currentSlide.style.transition = 'transform 0.5s ease-in-out';
+                currentSlide.style.transform = 'translateX(100%)';
+                currentSlide.classList.remove('active');
+
+                targetSlide.style.transition = 'none';
+                targetSlide.style.transform = 'translateX(-100%)';
+                void targetSlide.offsetWidth;
+                targetSlide.style.transition = 'transform 0.5s ease-in-out';
+                targetSlide.style.transform = 'translateX(0)';
+                targetSlide.classList.add('active');
+
+                gpCurrentIndex = index;
+                updateGpDots(index);
+            }
+            resetGpAutoPlay();
+        });
+    });
+
+    // Start
+    if (gpSlides.length > 0) {
+        startGpAutoPlay();
     }
 
-    function toggleMenu() {
-        hamburger.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        overlay.classList.toggle('active');
-        
-        if (mobileMenu.classList.contains('active')) {
-            lockScroll();
+
+    // === Feature Value Slider Functionality (Swipe & Drag) ===
+    const fvSlider = document.querySelector('.fv-slider');
+    const fvSlides = document.querySelectorAll('.fv-slide');
+    let fvCurrentIndex = 0;
+    const fvTotalSlides = fvSlides.length;
+    let fvAutoPlayInterval;
+
+    // Initial setup
+    fvSlides.forEach((slide, index) => {
+        if (index === 0) {
+            slide.classList.add('active');
+            slide.style.transform = 'translateX(0)';
         } else {
-            unlockScroll();
-            const mli = mobileMenu.querySelector('.mobile-location-item');
-            if (mli) mli.classList.remove('active');
+            slide.classList.remove('active');
+            slide.style.transform = 'translateX(100%)';
         }
+    });
+
+    function startFvAutoPlay() {
+        if (fvAutoPlayInterval) clearInterval(fvAutoPlayInterval);
+        fvAutoPlayInterval = setInterval(() => {
+            slideFvNext();
+        }, 5000);
     }
 
-    hamburger.addEventListener('click', toggleMenu);
-    
-    if (closeBtn) {
-        closeBtn.addEventListener('click', toggleMenu);
+    function resetFvAutoPlay() {
+        clearInterval(fvAutoPlayInterval);
+        startFvAutoPlay();
     }
-    
-    overlay.addEventListener('click', toggleMenu);
-    // Close on link click
-    const menuLinks = mobileMenu.querySelectorAll('a:not(#mobileLocationLink)');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', toggleMenu);
-    });
+
+    function slideFvNext() {
+        const currentSlide = fvSlides[fvCurrentIndex];
+
+        let nextIndex = fvCurrentIndex + 1;
+        if (nextIndex >= fvTotalSlides) nextIndex = 0;
+        const nextSlide = fvSlides[nextIndex];
+
+        currentSlide.style.transition = 'transform 0.5s ease-in-out';
+        currentSlide.style.transform = 'translateX(-100%)';
+        currentSlide.classList.remove('active');
+
+        nextSlide.style.transition = 'none';
+        nextSlide.style.transform = 'translateX(100%)';
+        void nextSlide.offsetWidth;
+
+        nextSlide.style.transition = 'transform 0.5s ease-in-out';
+        nextSlide.style.transform = 'translateX(0)';
+        nextSlide.classList.add('active');
+
+        fvCurrentIndex = nextIndex;
+    }
+
+    function slideFvPrev() {
+        const currentSlide = fvSlides[fvCurrentIndex];
+
+        let prevIndex = fvCurrentIndex - 1;
+        if (prevIndex < 0) prevIndex = fvTotalSlides - 1;
+        const prevSlide = fvSlides[prevIndex];
+
+        currentSlide.style.transition = 'transform 0.5s ease-in-out';
+        currentSlide.style.transform = 'translateX(100%)';
+        currentSlide.classList.remove('active');
+
+        prevSlide.style.transition = 'none';
+        prevSlide.style.transform = 'translateX(-100%)';
+        void prevSlide.offsetWidth;
+
+        prevSlide.style.transition = 'transform 0.5s ease-in-out';
+        prevSlide.style.transform = 'translateX(0)';
+        prevSlide.classList.add('active');
+
+        fvCurrentIndex = prevIndex;
+    }
+
+    if (fvSlides.length > 0) {
+        startFvAutoPlay();
+    }
+
+    // === Drag / Swipe Logic for FV Slider ===
+    let isDragging = false;
+    let startPos = 0;
+    let movedBy = 0;
+
+    if (fvSlider) {
+        fvSlider.addEventListener('touchstart', touchStart);
+        fvSlider.addEventListener('touchend', touchEnd);
+        fvSlider.addEventListener('touchmove', touchMove);
+
+        fvSlider.addEventListener('mousedown', touchStart);
+        fvSlider.addEventListener('mouseup', touchEnd);
+        fvSlider.addEventListener('mousemove', touchMove);
+        fvSlider.addEventListener('mouseleave', () => {
+            if (isDragging) isDragging = false;
+        });
+    }
+
+    function touchStart(event) {
+        isDragging = true;
+        startPos = getPositionX(event);
+        resetFvAutoPlay();
+    }
+
+    function touchMove(event) {
+        if (!isDragging) return;
+        const currentPosition = getPositionX(event);
+        movedBy = currentPosition - startPos;
+    }
+
+    function touchEnd() {
+        isDragging = false;
+        if (movedBy < -50) {
+            slideFvNext();
+        } else if (movedBy > 50) {
+            slideFvPrev();
+        }
+        movedBy = 0;
+    }
+
+    function getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    }
 });
-
-function showSlide(index) {
-    slides.forEach(slide => {
-        slide.classList.remove('active');
-    });
-    
-    dots.forEach(dot => {
-        dot.classList.remove('active');
-    });
-    
-    if (slides[index]) {
-        slides[index].classList.add('active');
-    }
-    if (dots[index]) {
-        dots[index].classList.add('active');
-    }
-}

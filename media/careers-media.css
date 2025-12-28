@@ -1,0 +1,478 @@
+/* Careers Page Responsive Styles */
+
+/* Base Logic: Hide Mobile Menu on Desktop */
+.mobile-menu-overlay,
+.mobile-menu-content {
+    display: none;
+}
+
+/* Tablet & Smaller Desktop (max-width: 992px) */
+@media (max-width: 992px) {
+
+    /* Navbar */
+    .nav-menu {
+        display: none !important;
+        /* Force hide default menu */
+    }
+
+    .nav-actions {
+        display: none;
+        /* Hide saved jobs on mobile for cleaner look */
+    }
+
+    .lang-dropdown-wrapper {
+        display: none !important;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1002;
+        /* Above overlay */
+        position: relative;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: #333;
+        margin: 5px 0;
+        transition: 0.3s;
+    }
+
+    /* Hamburger Animation when active */
+    .hamburger.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Mobile Menu Overlay Styles */
+    .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .mobile-menu-overlay.active {
+        display: block;
+    }
+
+    .mobile-menu-content {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        max-width: 300px;
+        height: 100%;
+        background-color: white;
+        z-index: 1001;
+        padding: 20px;
+        box-sizing: border-box;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu-content.active {
+        display: flex;
+        /* Changed to flex for vertical layout */
+        transform: translateX(0);
+    }
+
+    .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mobile-menu-logo img {
+        width: 150px;
+    }
+
+    .mobile-menu-items {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+
+    .mobile-menu-items li {
+        margin-bottom: 5px;
+    }
+
+    .mobile-menu-items li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        font-weight: 500;
+        display: block;
+        padding: 12px 10px;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid #f9f9f9;
+    }
+
+    .mobile-menu-items li a:hover {
+        color: #D70F64;
+        background-color: #fff5f9;
+        padding-left: 20px;
+    }
+
+    /* Footer in Menu */
+    .mobile-menu-footer {
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+        margin-top: auto;
+    }
+
+    .mobile-login-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #D70F64;
+        /* Pink */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    /* Hero Section */
+    .careers-hero {
+        min-height: auto;
+        padding: 40px 0 60px;
+        background-color: #FFC2D6;
+        /* Ensure pink background persists */
+    }
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .hero-text {
+        padding-right: 0;
+        margin-bottom: 30px;
+        z-index: 5;
+        width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: 28px;
+        /* Further reduced */
+        line-height: 1.2;
+        margin-bottom: 15px;
+        white-space: normal;
+        /* Allow wrapping */
+        padding: 0 10px;
+        /* Prevent edge touching */
+    }
+
+    .hero-text .hero-subheading {
+        font-size: 16px;
+        white-space: normal;
+        margin-bottom: 30px;
+        padding: 0 20px;
+    }
+
+    .job-search-box {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        padding: 5px;
+        /* Adjust padding */
+        box-sizing: border-box;
+        /* Ensure padding includes in width */
+    }
+
+    .job-search-box input {
+        font-size: 14px;
+        /* Prevent zoom on iOS */
+        width: 100%;
+        /* Take available space */
+        min-width: 0;
+        /* Flexbox fix */
+    }
+
+    .hero-visual {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        height: auto;
+        max-width: 320px;
+        /* Constrain image width */
+        margin: 20px auto 0;
+        opacity: 1;
+        /* Remove transparency */
+    }
+
+    .hero-visual img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Alternating Sections - Stack them */
+    .info-section .container,
+    .info-section.reverse .container {
+        flex-direction: column-reverse !important;
+        /* Image on top */
+        gap: 40px;
+        text-align: center;
+    }
+
+    .info-section.reverse .container {
+        flex-direction: column !important;
+        /* Reset for reverse to also have image top */
+    }
+
+    .info-section.reverse .info-image-wrapper {
+        padding-right: 0;
+    }
+
+    .info-section.reverse .info-text {
+        transform: none;
+    }
+
+    .info-text,
+    .info-image-wrapper {
+        max-width: 100%;
+        flex: auto;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .info-image-wrapper .main-img {
+        width: 100%;
+        max-width: 450px;
+        height: 450px;
+        /* Keep square-ish */
+        margin: 0 auto;
+    }
+
+    /* Hide complex pink backdrops on mobile/tablet to avoid overflow issues */
+    .pink-backdrop,
+    .reverse-backdrop {
+        display: none;
+    }
+
+    .btn-with-panda {
+        margin-top: 40px;
+        /* More space for panda header */
+        display: inline-block;
+        width: auto;
+        position: relative;
+    }
+
+    .panda-on-btn {
+        width: 60px;
+        top: -45px;
+        left: 10px;
+        /* Align slightly inside left edge */
+        right: auto;
+    }
+
+    .reverse-panda .panda-on-btn {
+        left: 10px;
+        /* Match standard button */
+        right: auto;
+        top: -45px;
+    }
+
+    /* Stats Section */
+    .stats-content-wrapper {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .stats-left {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .stats-right img {
+        height: 350px;
+        /* Smaller panda */
+        margin: 0 auto;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2x2 grid */
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+
+    /* Hero */
+    .hero-text h1 {
+        font-size: 32px;
+    }
+
+    .search-submit {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Mission */
+    .mission-section blockquote {
+        font-size: 22px;
+        white-space: normal;
+    }
+
+    /* Stats - 2 Column Grid for Mobile */
+    .stats-left {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns */
+        gap: 15px;
+        /* Adjust gap */
+    }
+
+    .stat-box {
+        width: 100%;
+        max-width: none;
+        /* remove max-width constraint */
+        margin: 0;
+        height: 140px;
+        /* Adjust height for smaller screens */
+    }
+
+    .stat-box .num {
+        font-size: 32px;
+        /* Smaller font on mobile */
+    }
+
+    .stat-box .label {
+        font-size: 12px;
+    }
+
+    /* Roles */
+    .section-heading {
+        font-size: 28px;
+        margin-bottom: 60px;
+    }
+
+    .role-item {
+        max-width: 100%;
+        /* Full width */
+        min-width: auto;
+    }
+
+    /* Stories */
+    .stories-grid {
+        grid-template-columns: 1fr;
+        /* 1 column */
+    }
+
+    .story-card {
+        min-height: auto;
+        /* Let content dictate height */
+    }
+
+    .story-img {
+        height: 200px;
+    }
+
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+        /* Stack all */
+        text-align: left;
+        /* Keep left aligned as requested */
+    }
+
+    .careers-footer {
+        padding: 40px 20px;
+    }
+
+    .footer-col {
+        margin-bottom: 30px;
+    }
+}
+
+/* Laptop and Large Screen Enhancements */
+@media (min-width: 993px) {
+
+    .container,
+    .hero-container,
+    .nav-container {
+        padding: 0 40px;
+        /* Ensure padding on sides */
+    }
+
+    .role-item {
+        /* Ensure cards don't get too wide on very large screens */
+        max-width: 450px;
+    }
+
+    .nav-container {
+        padding: 25px 40px;
+        /* Bigger navbar */
+    }
+
+    .careers-hero {
+        padding: 100px 0;
+        /* Bigger hero section */
+    }
+
+    .hero-container {
+        padding: 0 40px;
+    }
+
+    .story-card {
+        /* Ensure consistent height */
+        height: 100%;
+    }
+
+    .stories-grid {
+        /* Ensure Grid layout is respected */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    .container,
+    .hero-container,
+    .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .hero-text h1 {
+        font-size: 56px;
+        /* Larger font for big screens */
+    }
+
+    .info-text h3 {
+        font-size: 48px;
+    }
+}

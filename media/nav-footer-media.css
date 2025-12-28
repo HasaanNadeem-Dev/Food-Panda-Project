@@ -1,0 +1,460 @@
+/* Nav and Footer Media Queries */
+
+/* Global styles for Mobile Menu */
+.mobile-menu-overlay,
+.mobile-menu-content {
+    display: none;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.mobile-menu-content.active {
+    display: flex;
+    /* Changed from block to flex */
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100%;
+    background-color: white;
+    z-index: 1001;
+    /* overflow-y: auto;  Moved to items */
+    padding: 20px;
+    box-sizing: border-box;
+    /* Necessary for correct height calculation */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.mobile-menu-content::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Opera */
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    /* Gap between border and Home */
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    /* Border below image */
+}
+
+.mobile-menu-logo img {
+    width: 180px;
+    /* Thora aur bara logo */
+}
+
+.mobile-menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 50px;
+    /* Gap from border */
+    margin-bottom: 20px;
+    /* Gap at bottom */
+    flex-grow: 1;
+    /* Take up available space */
+    overflow-y: auto;
+    /* Scroll if content fits */
+    scrollbar-width: none;
+    /* Hide scrollbar */
+}
+
+.mobile-menu-items::-webkit-scrollbar {
+    display: none;
+}
+
+.mobile-menu-items li {
+    margin-bottom: 5px;
+    /* Adjust gap */
+}
+
+.mobile-menu-items li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-items li a:hover {
+    color: #ff2b85;
+    background-color: #fff5f9;
+    /* Light pink shade */
+    padding-left: 20px;
+    /* Thora sa right pr */
+}
+
+/* Mobile Location Dropdown Styles within Menu */
+.mobile-location-item>a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-country-list {
+    display: none;
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.mobile-location-item>a:hover {
+    padding-left: 10px;
+    /* Reset to original padding, no shift */
+    background-color: transparent;
+    /* Optional: remove bg if needed, or keep */
+}
+
+.mobile-location-item.active .mobile-country-list {
+    display: block;
+}
+
+.mobile-menu-footer {
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: auto;
+    /* Push to bottom */
+    width: 100%;
+}
+
+.mobile-login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff2b85;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 0;
+    /* Removing extra top margin if any, controlled by padding/border above */
+    cursor: pointer;
+}
+
+
+/* Default state for hamburger menu */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #ff2b85;
+}
+
+/* Click animation for hamburger */
+.hamburger.clicked .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.clicked .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.clicked .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Ensure Desktop Nav is Visible */
+@media (min-width: 993px) {
+
+    .nav-item,
+    .button,
+    .nav-icon {
+        display: block !important;
+    }
+
+    .hamburger-menu {
+        display: none !important;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 5%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .nav-logo img {
+        margin-left: 0;
+        height: auto;
+    }
+
+    /* Container for right-side items */
+    .nav-right-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-item {
+        margin-left: auto;
+        margin-right: 30px;
+        margin-top: 0;
+    }
+
+    .nav-item ul {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-item ul li a {
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
+    .button {
+        margin-right: 20px;
+    }
+
+    .button button {
+        margin-right: 0;
+    }
+
+    .nav-icon {
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    .nav-icon i {
+        margin-right: 0;
+        font-size: 20px;
+    }
+}
+
+/* Base Responsive Adjustments */
+@media (min-width: 993px) and (max-width: 1200px) {
+    nav {
+        padding: 15px 2%;
+    }
+
+    .nav-item {
+        margin-right: 15px;
+    }
+
+    .nav-item ul {
+        gap: 15px;
+    }
+
+    .nav-item ul li a {
+        font-size: 14px;
+    }
+
+    .button {
+        margin-right: 15px;
+    }
+
+    .button button {
+        min-width: auto;
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+}
+
+/* Tablet and Mobile Design */
+@media (max-width: 992px) {
+
+    /* Navigation */
+    nav {
+        justify-content: space-between;
+        padding: 15px 0;
+        position: relative;
+    }
+
+    .nav-logo img {
+        margin-left: 20px;
+        width: 140px;
+    }
+
+    /* Hide Desktop Elements */
+    .nav-item,
+    .button,
+    .nav-icon {
+        display: none !important;
+    }
+
+    /* Show Hamburger */
+    .hamburger {
+        display: block;
+    }
+
+    /* Footer */
+    footer {
+        padding: 40px 20px;
+        text-align: left;
+    }
+
+    footer div img {
+        margin-left: 0;
+        width: 180px;
+        padding-top: 0;
+        margin-bottom: 30px;
+    }
+
+    .ft-item {
+        display: block;
+        padding-top: 0;
+    }
+
+    .ft-item>div {
+        margin: 0 !important;
+        padding: 0 !important;
+        margin-bottom: 30px !important;
+        text-align: left;
+        width: 100%;
+    }
+
+    .ft-social {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .ft-item h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .ft-item ul {
+        padding-top: 0;
+        padding-left: 0;
+    }
+
+    .ft-item ul li {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .ft-item ul[style*="display: flex"] {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    /* Copyright Section */
+    .ft-down {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        gap: 10px;
+        border-top: 1px solid #333;
+    }
+
+    .ft-down .up {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .ft-policy {
+        margin: 0 !important;
+    }
+
+    .ft-down div {
+        margin: 0 !important;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Footer */
+    .ft-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: 0 0px;
+    }
+
+    .ft-item>div {
+        margin: 0 !important;
+        padding: 0 !important;
+        margin-bottom: 30px !important;
+        text-align: left;
+        width: 100%;
+    }
+
+    footer div img {
+        /* User adjustment */
+        display: block;
+        margin-right: auto;
+        padding-top: 40px;
+        width: 320px;
+        max-width: 80%;
+    }
+
+    .ft-item ul[style*="display: flex"] {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .ft-down {
+        flex-direction: column;
+        gap: 10px;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .ft-down .up {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ft-down div {
+        margin: 0 !important;
+    }
+}
+
+
+/* Large Screens (from partner-media.css) */
+@media (min-width: 1024px) {
+    .ups {
+        max-width: 1700px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+
+    footer div {
+        /* Content area expands */
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ft-up {
+        max-width: 1700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ft-down-item {
+        padding-left: 80px;
+    }
+}

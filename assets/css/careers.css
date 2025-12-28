@@ -1,0 +1,1053 @@
+/* Careers Page Specific Styles - Standalone */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    overflow-x: hidden;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.careers-nav {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-family: 'Poppins', sans-serif;
+    height: 85px;
+    /* Increased height */
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    max-width: 1400px;
+    /* Full width constraint */
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo img {
+    height: 45px;
+    /* Bigger logo */
+    display: block;
+}
+
+.nav-menu {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    /* Center the menu items as per visual balance */
+}
+
+.nav-menu ul {
+    display: flex;
+    gap: 40px;
+    /* More spacing */
+    align-items: center;
+}
+
+.nav-menu a {
+    font-size: 16px;
+    /* Reduced to 16px */
+    font-weight: 600;
+    /* 600 weight as requested */
+    color: #000;
+    /* Black text */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    text-transform: none;
+    /* No capitalization enforcement if not in design */
+}
+
+.nav-menu a:hover {
+    color: #D70F64;
+}
+
+.nav-menu i {
+    font-size: 14px;
+    /* Slightly bigger icon to match text */
+    color: #333;
+    transition: transform 0.2s;
+}
+
+.nav-menu a:hover i {
+    color: #D70F64;
+    transform: rotate(180deg);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* Ensure full height for alignment */
+}
+
+.saved-jobs-link {
+    color: #D70F64;
+    font-weight: 600;
+    /* Match nav items */
+    font-size: 16px;
+    /* Match nav items */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity 0.2s;
+    height: 100%;
+}
+
+.saved-jobs-link i {
+    font-size: 20px;
+}
+
+.saved-jobs-link:hover {
+    opacity: 0.8;
+}
+
+/* Hero Language Expandable Button */
+.lang-dropdown-wrapper {
+    position: absolute;
+    top: 100%;
+    right: 5px;
+    z-index: 20;
+    background: #D70F64;
+    color: white;
+    width: 200px;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 54px;
+    /* Default collapsed height */
+}
+
+.lang-dropdown-wrapper.expanded {
+    height: 200px;
+    /* Expanded height to show options */
+    background: #b00c50;
+}
+
+.lang-header {
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.lang-header i {
+    font-size: 11px;
+    transition: transform 0.3s;
+}
+
+.lang-dropdown-wrapper.expanded .lang-header i {
+    transform: rotate(180deg);
+}
+
+.lang-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.2s 0.1s;
+}
+
+.lang-dropdown-wrapper.expanded .lang-options {
+    opacity: 1;
+}
+
+.lang-options li {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lang-options li a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.lang-options li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger {
+    display: none;
+}
+
+/* Hero Section */
+/* Hero Section */
+.careers-hero {
+    background: #FFC2D6;
+    /* Solid soft pink matching the reference */
+    padding: 40px 0;
+    /* Reduced padding */
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    /* To handle image positioning cleanly */
+    min-height: 600px;
+    /* Reduced height from 800px */
+    margin-top: -5px;
+    /* Stick to navbar */
+    z-index: 1;
+    /* Ensure background is behind nav but content handles z-index */
+}
+
+/* ... (skip unchanged hero-container etc if targeting block) ... */
+
+/* Actually, to be safe, I will just replace the hero block visuals */
+
+.hero-visual {
+    position: absolute;
+    right: -100px;
+    /* Adjusted right position for smaller image */
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 650px;
+    /* Reduced to 650px */
+    height: 650px;
+    pointer-events: none;
+}
+
+.hero-container {
+    max-width: 1400px;
+    /* Wider container to allow single lines */
+    margin: 0 auto;
+    display: flex;
+    /* Keep flex context */
+    justify-content: flex-start;
+    /* Align content to start */
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+    position: relative;
+    height: 100%;
+}
+
+.hero-text {
+    max-width: 100%;
+    /* Allow full width */
+    z-index: 10;
+    /* requested z-index */
+    padding-right: 0;
+    position: relative;
+    width: 100%;
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    /* Reduced to 48px */
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #121212;
+    letter-spacing: -1px;
+    white-space: nowrap;
+}
+
+.hero-text .hero-subheading {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 50px;
+    color: #333;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.job-search-box {
+    background: white;
+    padding: 4px 4px 4px 20px;
+    /* Tighter padding */
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    max-width: 520px;
+    height: 50px;
+    /* Reduced from 64px */
+}
+
+/* ... existing search styles ... */
+
+.job-search-box input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 15px;
+    /* Slightly smaller text */
+    font-family: 'Poppins', sans-serif;
+    color: #555;
+    font-weight: 500;
+}
+
+.job-search-box input::placeholder {
+    color: #888;
+}
+
+.search-submit {
+    background: #D70F64;
+    color: white;
+    border: none;
+    width: 42px;
+    /* Reduced from 52px */
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    /* Reduced icon size */
+    transition: background 0.2s, transform 0.2s;
+    margin-left: 10px;
+}
+
+.search-submit:hover {
+    background: #b00c50;
+    transform: scale(1.05);
+}
+
+.hero-visual {
+    position: absolute;
+    right: -150px;
+    /* Moved to right side */
+    left: auto;
+    /* Reset left */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 800px;
+    /* Reduced to 800px */
+    height: 800px;
+    pointer-events: none;
+}
+
+.hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.9;
+    /* Slight separate if overlap matches design? keeping 1 for now */
+}
+
+/* Mission Section */
+.mission-section {
+    text-align: center;
+    padding: 80px 20px;
+    max-width: 1400px;
+    /* Widened to fit single line heading */
+    margin: 0 auto;
+}
+
+.mission-section blockquote {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.4;
+    white-space: nowrap;
+    /* Single line as requested */
+    text-align: center;
+}
+
+.mission-section p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    max-width: 800px;
+    margin: 0 auto 15px auto;
+    /* Explicit center margins */
+}
+
+/* Info Section Redesign ("We Love What We Do") */
+.info-section {
+    padding: 35px 0;
+    background: #F7F7F7;
+    /* Light gray background to match design */
+    overflow: hidden;
+    /* Prevent overflow of the pink shape */
+    position: relative;
+}
+
+.info-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    /* Reduced gap to 15px per user request */
+    padding: 0 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.info-text {
+    flex: 0 0 45%;
+    /* Fixed width for text */
+    max-width: 500px;
+}
+
+.info-text h3 {
+    font-size: 42px;
+    /* Large heading */
+    color: #D70F64;
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.info-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* Button with Panda Overlay */
+.btn-with-panda {
+    position: relative;
+    display: inline-block;
+    margin-top: 40px;
+    /* Space for the panda head */
+    z-index: 10;
+}
+
+.panda-on-btn {
+    position: absolute;
+    width: 60px;
+    /* Adjust size as needed */
+    height: auto;
+    top: -38px;
+    /* Peek over the top */
+    left: 15px;
+    z-index: -1;
+    /* Behind the button or in front? Usually peeking behind, but design shows on top maybe? Let's check. 
+                   Actually, standard peeking is usually behind. But if it's "holding" it, it might be in front. 
+                   Looking at the image, it seems to be peeking from BEHIND or just sitting ON TOP.
+                   Let's put it z-index 20 to be safe, but if it cuts off text, we'll need to move it. 
+                   Wait, generally these "mascot peeking" UI elements are behind the button so the text isn't obscured, 
+                   or they are to the side. The image shows it above the button. 
+                   I will set z-index: 20 but ensure it doesn't overlap text. Use left positioning. */
+    z-index: 20;
+}
+
+.info-text .btn-primary {
+    background: #D70F64;
+    color: white;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(215, 15, 100, 0.2);
+    display: inline-block;
+    position: relative;
+    z-index: 10;
+    /* Ensure button text is clickable */
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.info-text .btn-primary:hover {
+    background: #b00c50;
+    transform: translateY(-2px);
+}
+
+/* Image Wrapper with decorative backdrop */
+.info-image-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    /* Align image to right */
+    padding-right: 0;
+}
+
+/* Specific fix for the pink shape */
+.pink-backdrop {
+    position: absolute;
+    width: 150%;
+    /* Extend far right */
+    height: 140%;
+    top: -20%;
+    right: -50%;
+    /* Push it mostly off screen to the right */
+    background: #FFC2D6;
+    /* Soft pink */
+    border-radius: 50px;
+    /* Rounded corners for the visible part */
+    z-index: 0;
+    transform: rotate(-2deg);
+    /* Slight angle if needed, or straight. Design looks straight with rounded corner. */
+    transform-origin: top right;
+    display: block;
+}
+
+/* Adjust pink backdrop to match the specific "curved start" look better */
+/* The design shows the pink background starting from about middle of the image and extending right. */
+.we-love-section .pink-backdrop {
+    width: 1000px;
+    height: 106vh;
+    top: -15px;
+    left: 150px;
+    right: auto;
+    bottom: 10px;
+    border-radius: 10px;
+    background: #FFC2D6;
+    transform: none;
+    z-index: 0;
+}
+
+
+.info-image-wrapper .main-img {
+    position: relative;
+    z-index: 10;
+    width: 550px;
+    /* Fixed larger width */
+    height: 550px;
+    /* Fixed height to make it square */
+    object-fit: cover;
+    /* Ensure image covers the square area */
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    /* Slightly stronger shadow */
+    display: block;
+}
+
+/* Reverse section (at foodpanda) adjustments */
+.info-section.reverse {
+    background: #fff;
+}
+
+.info-section.reverse .container {
+    flex-direction: row;
+    /* HTML structure is Image then Text, so row works */
+    gap: 15px;
+}
+
+.info-section.reverse .info-image-wrapper {
+    padding-right: 140px;
+    /* Push image left */
+}
+
+.info-section.reverse .info-text {
+    transform: translateX(-55px);
+}
+
+/* Specific fix for the reverse pink shape */
+.reverse-backdrop {
+    width: 1000px;
+    height: 106vh;
+    top: -15px;
+    left: auto;
+    /* Reset left */
+    right: 240px;
+    /* Moved left (increased to 240px) */
+    border-radius: 10px;
+    position: absolute;
+    background: #FFC2D6;
+    z-index: 0;
+    transform: none;
+}
+
+/* If the HTML has reverse-panda class */
+.reverse-panda .panda-on-btn {
+    left: 15px;
+    right: auto;
+    transform: none;
+}
+
+
+/* Stats Section */
+/* Stats Section */
+.stats-bg-section {
+    background: #FFC2D6;
+    /* Solid pink */
+    padding: 80px 20px;
+    margin-top: 60px;
+}
+
+.stats-bg-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.stats-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 60px;
+    color: #333;
+}
+
+.stats-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    /* Space between grid and panda */
+}
+
+/* Left side: 2x2 Grid */
+.stats-left {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* User image shows: Outer white border -> Pink Gap -> Inner White Box */
+.stat-box {
+    background-color: white;
+    background-clip: content-box;
+    /* content-box clips background to inside padding */
+    width: 240px;
+    height: 240px;
+    border-radius: 35px;
+    /* Outer radius, inner will auto-adjust */
+    padding: 10px;
+    /* Creates the pink gap (since parent is pink and bg is clipped) */
+    border: 3px solid white;
+    /* The outer white line */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none;
+    /* Clean flat look */
+}
+
+.stat-box .num {
+    font-size: 52px;
+    /* Increased font size */
+    font-weight: 800;
+    color: #D70F64;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.stat-box .label {
+    font-size: 16px;
+    /* Increased font size */
+    font-weight: 800;
+    color: #D70F64;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Right side: Panda */
+.stats-right {
+    flex: 0 0 auto;
+}
+
+.stats-right img {
+    height: 450px;
+    /* Large panda */
+    width: auto;
+    display: block;
+}
+
+
+
+/* Roles Section */
+.roles-showcase {
+    padding: 80px 20px;
+    max-width: 1400px;
+    /* Increased from 1200px */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-heading {
+    font-size: 90px;
+    font-weight: 700;
+    color: #ff2b85;
+    margin-bottom: 50px;
+}
+
+/* Roles Section */
+.roles-showcase {
+    padding: 100px 20px 80px;
+    max-width: 1400px;
+    /* Increased from 1200px */
+    margin: 0 auto;
+    text-align: left;
+}
+
+.section-heading {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ff2b85;
+    margin-bottom: 80px;
+    /* More space for floating logos */
+}
+
+.roles-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.role-item {
+    flex: 1;
+    min-width: 320px;
+    max-width: 420px;
+    /* Increased from 350px */
+    background: white;
+    border: 1.4px solid #ff2b85;
+    border-bottom: 6px solid #ff2b85;
+    /* Thick bottom border */
+    border-radius: 12px;
+    padding: 60px 30px 20px;
+    /* Reduced bottom padding to 20px */
+    position: relative;
+    /* For absolute elements */
+    transition: all 0.3s;
+    text-align: left;
+    /* Left align text */
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    /* Space for top logo overflow */
+}
+
+.role-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Floating Top Logo Wrapper */
+.role-logo-wrapper {
+    position: absolute;
+    top: -45px;
+    /* Half out */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 90px;
+    background: white;
+    border: 1.4px solid #ff2b85;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.role-logo-wrapper img {
+    width: 60%;
+    /* Adjust logo size */
+    height: auto;
+}
+
+/* Star Icon */
+.role-star {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: #D70F64;
+}
+
+.role-item h4 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+    /* Space before location */
+    line-height: 1.3;
+    min-height: 64px;
+    /* Ensure alignment */
+}
+
+.role-loc {
+    font-size: 16px;
+    color: #1a1a1a;
+    font-weight: 500;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.role-loc i {
+    color: #ff2b85;
+    font-size: 20px;
+}
+
+.btn-read-more {
+    background: #ff2b85;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    align-self: center;
+    /* Centered as requested */
+    /* Pushed to right */
+    margin-top: auto;
+    /* Pin to bottom */
+    box-shadow: 0 4px 10px rgba(215, 15, 100, 0.2);
+    transition: background 0.2s;
+    min-width: 180px;
+}
+
+.btn-read-more:hover {
+    background: #b00c50;
+    color: white;
+}
+
+/* Stories / Blog */
+.stories-section {
+    padding: 60px 20px 100px;
+    max-width: 1400px;
+    /* Increased from 1200px */
+    margin: 0 auto;
+}
+
+.section-heading-left {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.story-card {
+    background: white;
+    border-radius: 12px;
+    /* Increased border radius */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    min-height: 530px;
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.story-img {
+    position: relative;
+    height: 220px;
+    /* Adjusted height for better balance */
+    overflow: hidden;
+}
+
+.story-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.story-card:hover .story-img img {
+    transform: scale(1.05);
+}
+
+.date-overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+.story-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.story-category {
+    color: #ff2b85;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.story-body h4 {
+    font-size: 28px;
+    /* Larger title like the reference */
+    font-weight: 400;
+    /* Less bold title */
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.story-excerpt {
+    font-size: 18px;
+    /* Larger text */
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.read-more-link {
+    align-self: flex-end;
+    margin-top: auto;
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 18px;
+    /* Larger text */
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+    letter-spacing: 0.5px;
+}
+
+.read-more-link:hover {
+    color: #ff2b85;
+}
+
+.read-more-link i {
+    font-size: 18px;
+}
+
+.center-btn {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.center-btn .btn-primary {
+    background: #ff2b85;
+    /* Bright pink matching image */
+    color: white;
+    padding: 16px 60px;
+    /* Larger padding for pill shape */
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    /* Larger text */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 43, 133, 0.3);
+}
+
+.center-btn .btn-primary:hover {
+    background: #e02475;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 43, 133, 0.4);
+}
+
+/* Footer (Custom) */
+.careers-footer {
+    background: #000;
+    color: white;
+    padding: 60px 40px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    font-size: 14px;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: white;
+}
+
+.share-job-btn {
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    text-align: left;
+}
+
+.social-links a {
+    font-size: 20px;
+    color: white;
+}

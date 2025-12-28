@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Newsroom | Food Panda</title>
+    <!-- Standard Styles -->
+    <link rel="stylesheet" href="./assets/css/nav-footer.css">
     <link rel="stylesheet" href="./assets/css/newsroom.css">
+
+    <!-- Media Queries -->
+    <link rel="stylesheet" href="./media/nav-footer-media.css">
     <link rel="stylesheet" href="./media/newsroom-media.css">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="./assets/img/logo/favicon (1).png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
         rel="stylesheet">
 </head>
+
 <body>
-    
+
     <!-- Nav Bar -->
     <nav>
-        <div class="nav-logo"><img src="./assets/img/logo/Food Panda Logo.svg" alt=""></div>
+        <div class="nav-logo"><img src="./assets/img/logo/Food Panda Logo.svg" alt="Food Panda"></div>
         <div class="nav-item">
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="newsroom.html">Newsroom</a></li>
                 <li><a href="partners.html">Partners</a></li>
-                <li><a href="">Panda Ads</a></li>
+                <li><a href="pandaads.html" target="_blank">Panda Ads</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="">Careers</a></li>
+                <li><a href="careers.html" target="_blank">Careers</a></li>
             </ul>
         </div>
         <div class="button location-dropdown">
@@ -78,6 +85,7 @@
     <section class="press-releases">
         <div class="container">
             <h1 class="page-title">Press Releases</h1>
+
             <!-- Featured Article -->
             <div class="featured-article">
                 <div class="featured-image">
@@ -86,9 +94,11 @@
                 <div class="featured-content">
                     <span class="date">15.12.2024</span>
                     <h2>foodpanda strengthens merchant care with record onboarding milestone in Asia</h2>
-                    <p>foodpanda continues to expand its merchant network across Asia, reaching a significant milestone in merchant onboarding while enhancing support services for restaurant and retail partners.</p>
+                    <p>foodpanda continues to expand its merchant network across Asia, reaching a significant milestone
+                        in merchant onboarding while enhancing support services for restaurant and retail partners.</p>
                 </div>
             </div>
+
             <!-- Filter Section -->
             <div class="filter-section">
                 <div class="filter-header">
@@ -105,7 +115,7 @@
             </div>
 
             <!-- News Grid -->
-            <div class="news-grid">
+            <div class="news-grid" id="newsGrid">
                 <!-- Row 1 -->
                 <div class="news-card" data-category="merchants">
                     <div class="news-image">
@@ -135,7 +145,8 @@
                     </div>
                     <div class="news-content">
                         <span class="category">Partnerships</span>
-                        <h4>foodpanda brings omnichannel values to merchants with one-of-a-kind ride-hailing partnership across Asia</h4>
+                        <h4>foodpanda brings omnichannel values to merchants with one-of-a-kind ride-hailing partnership
+                            across Asia</h4>
                         <span class="date">07.10.2024</span>
                     </div>
                 </div>
@@ -169,7 +180,8 @@
                     </div>
                     <div class="news-content">
                         <span class="category">Partnerships</span>
-                        <h4>foodpanda Partners with Fiserv to Enable More Streamlined and Secure eCommerce Payments Across Asia</h4>
+                        <h4>foodpanda Partners with Fiserv to Enable More Streamlined and Secure eCommerce Payments
+                            Across Asia</h4>
                         <span class="date">15.06.2024</span>
                     </div>
                 </div>
@@ -181,7 +193,8 @@
                     </div>
                     <div class="news-content">
                         <span class="category">Press Releases</span>
-                        <h4>foodpanda Singapore launches inaugural Rider Safety Month in partnership with Traffic Police</h4>
+                        <h4>foodpanda Singapore launches inaugural Rider Safety Month in partnership with Traffic Police
+                        </h4>
                         <span class="date">05.05.2024</span>
                     </div>
                 </div>
@@ -203,7 +216,8 @@
                     </div>
                     <div class="news-content">
                         <span class="category">Sustainability</span>
-                        <h4>Finally, something to 'Yew' about! foodpanda teams up Singapore's "most full" neighbourhood for their first delivery</h4>
+                        <h4>Finally, something to 'Yew' about! foodpanda teams up Singapore's "most full" neighbourhood
+                            for their first delivery</h4>
                         <span class="date">18.03.2024</span>
                     </div>
                 </div>
@@ -237,21 +251,28 @@
                     </div>
                     <div class="news-content">
                         <span class="category">Partnerships</span>
-                        <h4>foodpanda partners with CyberSource to drive Seamless Growth and Enhanced Customer checkout experience</h4>
+                        <h4>foodpanda partners with CyberSource to drive Seamless Growth and Enhanced Customer checkout
+                            experience</h4>
                         <span class="date">08.12.2023</span>
                     </div>
                 </div>
             </div>
+
+            <div class="no-results" id="noResults"
+                style="display: none; text-align: center; padding: 40px; font-size: 18px; color: #666;">
+                No articles found matching this filter.
+            </div>
+
         </div>
     </section>
 
     <!-- Footer -->
-<footer>
-            <div><img src="./assets/img/logo/Food Panda Logo.svg" alt=""></div>
+    <footer>
+        <div><img src="./assets/img/logo/Food Panda Logo.svg" alt="Food Panda"></div>
 
-
+        <div class="ups">
             <div class="ft-item">
-                <div style="margin-left: 100px;">
+                <div>
                     <h2>Navigate</h2>
                     <ul>
                         <li>Home</li>
@@ -261,7 +282,7 @@
                     </ul>
                 </div>
 
-                <div style="margin-right: auto; margin-left: 150px;">
+                <div class="ft-down-item">
                     <h2>Collaborate</h2>
                     <ul>
                         <li>Explore careers</li>
@@ -270,25 +291,27 @@
                     </ul>
                 </div>
 
-                <div style="margin-right: 200px;">
+                <div class="ft-social">
                     <h2>Follow us on</h2>
-                    <ul style="display: flex; gap: 10px;">
+                    <ul style="display: flex; gap: 10px; ">
                         <li><i class="fa-brands fa-facebook-f"></i></li>
                         <li><i class="fa-brands fa-linkedin-in"></i></li>
                         <li><i class="fa-brands fa-instagram"></i></li>
                     </ul>
                 </div>
             </div>
-     </footer>
-     <section>
-        <div class="ft-down">
-            <div style="margin-left: 100px;">Copyright © 2025 foodpanda</div>
-            <div style="margin-left: auto; margin-right: 50px;"><p><a href="">Privacy Policy</a></p></div>
         </div>
-     </section>
-
-    <script src="./assets/js/nav.js"></script>
-    <script src="./assets/js/newsroom.js"></script>
+    </footer>
+    <section>
+        <div class="ft-down">
+            <div class="up">
+                <div>Copyright © 2025 foodpanda</div>
+                <div class="ft-policy">
+                    <p><a href="">Privacy Policy</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
@@ -305,9 +328,9 @@
             <li><a href="about.html">About</a></li>
             <li><a href="newsroom.html">Newsroom</a></li>
             <li><a href="partners.html">Partners</a></li>
-            <li><a href="">Panda Ads</a></li>
+            <li><a href="pandaads.html" target="_blank">Panda Ads</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="">Careers</a></li>
+            <li><a href="careers.html" target="_blank">Careers</a></li>
             <li class="mobile-location-item">
                 <a href="#" id="mobileLocationLink">
                     <span class="location-text">Choose Location</span>
@@ -333,9 +356,15 @@
                 </ul>
             </li>
         </ul>
-        <div class="mobile-auth-buttons">
-            <button class="auth-btn login-signup">Login/Sign up</button>
+        <div class="mobile-menu-footer">
+            <button class="mobile-login-btn">Login/Sign up</button>
         </div>
     </div>
+
+    <!-- Scripts -->
+    <script src="./assets/js/nav-footer.js"></script>
+    <script src="./assets/js/newsroom.js"></script>
+
 </body>
+
 </html>

@@ -1,0 +1,667 @@
+/* Panda Ads Styles */
+:root {
+    --primary-pink: #D70F64;
+    --dark-bg: #121212;
+    --light-bg: #FFFFFF;
+    --gray-bg: #F7F7F7;
+    --text-dark: #333333;
+    --text-white: #FFFFFF;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+}
+
+/* Custom Panda Ads Navbar */
+.panda-ads-nav {
+    display: block;
+    /* Override nav-footer.css flex */
+    background: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.ads-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    /* Ensure full width */
+    box-sizing: border-box;
+}
+
+.ads-logo a {
+    text-decoration: none;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-panda {
+    font-weight: 700;
+    color: #D70F64;
+}
+
+.logo-ads {
+    font-weight: 300;
+    color: #D70F64;
+    margin-left: 2px;
+}
+
+.ads-menu-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.ads-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.ads-menu li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.ads-menu li a:hover,
+.ads-menu li a.active {
+    color: #D70F64;
+}
+
+.ads-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-contact {
+    background: #D70F64;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.btn-contact:hover {
+    background: #b00c50;
+}
+
+.search-icon {
+    color: #000;
+    font-size: 20px;
+}
+
+.ads-hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.ads-hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #333;
+}
+
+/* Panda Ads Hero Section (Rewritten) */
+.ads-hero-section {
+    background-color: #121212;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/banner/foodpanda-panda-ads.webp');
+    background-size: cover;
+    background-position: center;
+    padding: 60px 0;
+    color: white;
+    position: relative;
+}
+
+.ads-hero-layout {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; removed */
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.ads-hero-content {
+    max-width: 600px;
+    /* Slightly wider for single column */
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.hero-desc {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    color: white;
+}
+
+.btn-white-pill {
+    display: inline-block;
+    background-color: white;
+    color: #D70F64;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-white-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Stats Section */
+.ads-stats {
+    padding: 80px 0 60px;
+    background: white;
+    text-align: center;
+}
+
+.stats-heading {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 50px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #333333;
+    letter-spacing: -0.5px;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+.stat-item h3 {
+    font-size: 80px;
+    font-weight: 900;
+    margin: 0 0 5px 0;
+    color: #000;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.stat-item p {
+    font-size: 18px;
+    color: #000;
+    font-weight: 700;
+    margin: 0;
+    text-transform: lowercase;
+    /* as per image roughly, or just standard text */
+}
+
+/* Benefits Section */
+.ads-benefits {
+    padding: 80px 0;
+    background: var(--gray-bg);
+    text-align: center;
+}
+
+.ads-benefits h2 {
+    font-size: 32px;
+    margin-bottom: 60px;
+}
+
+.benefits-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.benefit-card {
+    background: transparent;
+    padding: 0 10px;
+    border-radius: 0;
+    flex: 1;
+    box-shadow: none;
+    text-align: center;
+}
+
+.benefit-card img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.benefit-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.benefit-card p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Solutions Section */
+
+
+.solutions-heading {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 60px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #333;
+    text-align: center;
+}
+
+.solution-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 0px;
+    /* Reduced from 100px */
+    gap: 60px;
+}
+
+/* ... */
+/* Targeting Section */
+.ads-targeting {
+    /* Reduced top padding */
+    background: #fff;
+}
+
+.solution-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.solution-row.reverse .solution-text {
+    margin-left: 50px;
+    padding-left: 50px;
+}
+
+.solution-text {
+    flex: 1;
+}
+
+.solution-text h3 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.solution-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.solution-img {
+    flex: 1;
+}
+
+.solution-img img {
+    width: 100%;
+    max-width: 650px;
+    display: block;
+    margin: 0 auto;
+}
+
+.strategic-img {
+    padding: 60px;
+}
+
+.btn-primary-pink {
+    background: var(--primary-pink);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: background 0.2s;
+}
+
+.btn-primary-pink:hover {
+    background: #b00c50;
+}
+
+/* Case Studies */
+.ads-cases {
+    padding: 80px 0;
+    background: var(--gray-bg);
+    text-align: center;
+}
+
+.ads-cases h2 {
+    font-size: 36px;
+    margin-bottom: 60px;
+}
+
+.cases-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.case-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    flex: 1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.case-img {
+    height: 200px;
+    background: #e0e0e0;
+}
+
+.case-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.case-content {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.case-content h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+/* CTA Section */
+.ads-cta {
+    padding: 60px 0;
+    background: #fff;
+}
+
+.cta-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.ads-cta h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 0;
+    color: #000;
+}
+
+/* Targeting Section */
+.ads-targeting {
+
+    background: #fff;
+}
+
+.targeting-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.targeting-content {
+    flex: 1;
+    max-width: 500px;
+    padding-left: 50px;
+}
+
+.targeting-content h2 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.targeting-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.targeting-table-wrapper {
+    flex: 1;
+    /* Removed background/shadow/border-radius/overflow/padding as image likely has its own whitespace or user wants plain image */
+    display: flex;
+    justify-content: center;
+}
+
+.targeting-chart-img {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    display: block;
+}
+
+
+
+/* Brands Section */
+.ads-brands {
+    padding: 80px 0;
+    background: #fff;
+    text-align: center;
+}
+
+.ads-brands h2 {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 60px;
+    color: #333;
+}
+
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+.brand-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand-item img {
+    max-height: 55px;
+    max-width: 140px;
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    object-fit: contain;
+}
+
+.brand-item.logo-lg img {
+    max-height: 85px;
+    max-width: 200px;
+}
+
+.brand-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* ===== FOOTER SECTION ===== */
+.main-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 60px 0 30px;
+}
+
+/* Footer Brand/Logo - Full Width Row */
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 50px;
+}
+
+.footer-logo {
+    height: auto;
+}
+
+.brand-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+}
+
+/* Footer Columns - Below Logo */
+.footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 60px;
+    align-items: start;
+}
+
+/* Footer Columns */
+.footer-col h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.6;
+    transition: color 0.2s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #ff2d8c;
+}
+
+/* Footer Button */
+.btn-footer-pink {
+    display: inline-block;
+    background-color: #ff2d8c;
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-footer-pink:hover {
+    background-color: #e0247a;
+    transform: translateY(-2px);
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 24px;
+    transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+    color: #ff2d8c;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid #2a2a2a;
+    padding-top: 25px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 13px;
+    color: #fff;
+}

@@ -1,366 +1,263 @@
 /* Card Slider Functionality */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const slider = document.getElementById('cardSlider');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const container = document.querySelector('.card-slider-container');
-    
-    if (!slider || !prevBtn || !nextBtn || !container) return;
-    
-    let cards = document.querySelectorAll('.card');
-    if (cards.length === 0) return;
-    
-    const originalCards = Array.from(cards);
+
+    if (!slider || !container) return;
+
+    // --- Clone Strategy for Infinite Loop ---
+    // [Clone Set End] [Original Set] [Clone Set Start]
+
+    let originalCards = Array.from(document.querySelectorAll('.card'));
+    if (originalCards.length === 0) return;
+
+    const gap = 24;
+    const cardWidthWithGap = originalCards[0].offsetWidth + gap;
+    const totalOriginals = originalCards.length;
+
+    // We clone 2 full sets: one before and one after for simplicity (ensure enough buffer)
+    // Or just 4-5 cards if many, but let's clone the whole set once for safety if not too huge.
+    // If set is small (e.g. 5 cards), cloning whole set is fine.
+
     originalCards.forEach(card => {
         const clone = card.cloneNode(true);
+        clone.classList.add('clone-end');
         slider.appendChild(clone);
     });
 
-    cards = document.querySelectorAll('.card');
-    const totalCards = cards.length;
-    const visibleCards = originalCards.length;
-    
-    let currentIndex = 0;
-    const gap = 24;
+    // To prepend, we must insert before first child
+    originalCards.slice().reverse().forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.classList.add('clone-start');
+        slider.insertBefore(clone, slider.firstChild);
+    });
+
+    // Now cards structure: [Clones Start (N)] [Originals (N)] [Clones End (N)]
+    // Current Index 0 should point to the FIRST ORIGINAL card.
+    // Index offset = N
+
+    let currentIndex = totalOriginals; // Point to start of originals
+    const totalItems = slider.children.length; // 3N
+
+    let isTransitioning = false;
     let autoPlayInterval;
     let isPaused = false;
-    let isTransitioning = false;
-    
-    function getCardWidth() {
-        return cards[0].offsetWidth + gap;
+
+    // --- Drag Variables ---
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID;
+
+    // --- Positioning ---
+
+    function getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
     }
-    
+
+    function setSliderPosition() {
+        slider.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
     function updateSliderPosition(animate = true) {
-        if (isTransitioning) return;
-        
-        const cardWidth = getCardWidth();
-        const translateX = -100 - (currentIndex * cardWidth);
-        
-        if (!animate) {
-            slider.style.transition = 'none';
-        } else {
+        // -1 * index * width
+        // But wait, we need to center? The original CSS centered `.card-slider` maybe?
+        // Assuming slider flows left.
+
+        currentTranslate = -(currentIndex * cardWidthWithGap);
+        prevTranslate = currentTranslate;
+
+        if (animate) {
             slider.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        } else {
+            slider.style.transition = 'none';
         }
-        
-        slider.style.transform = `translateX(${translateX}px)`;
+
+        setSliderPosition();
     }
-    
-    function handleInfiniteLoop() {
-        if (currentIndex >= visibleCards) {
-            isTransitioning = true;
-            setTimeout(() => {
-                slider.style.transition = 'none';
-                currentIndex = 0;
-                slider.style.transform = `translateX(-100px)`;
-                setTimeout(() => {
-                    isTransitioning = false;
-                }, 50);
-            }, 500);
-        } else if (currentIndex < 0) {
-            isTransitioning = true;
-            setTimeout(() => {
-                slider.style.transition = 'none';
-                currentIndex = visibleCards - 1;
-                const cardWidth = getCardWidth();
-                slider.style.transform = `translateX(-100px - ${currentIndex * cardWidth}px)`;
-                setTimeout(() => {
-                    isTransitioning = false;
-                }, 50);
-            }, 500);
-        }
-    }
-    
-    function nextSlide() {
-        if (isTransitioning) return;
-        currentIndex++;
-        updateSliderPosition();
-        handleInfiniteLoop();
-    }
-    
-    function prevSlide() {
-        if (isTransitioning) return;
-        currentIndex--;
-        updateSliderPosition();
-        handleInfiniteLoop();
-    }
-    
+
+    // --- Auto Play ---
     function startAutoPlay() {
         if (autoPlayInterval) clearInterval(autoPlayInterval);
         autoPlayInterval = setInterval(() => {
-            if (!isPaused && !isTransitioning) {
-                nextSlide();
+            if (!isPaused && !isDragging) {
+                moveToNext();
             }
-        }, 3000);
+        }, 5000);
     }
-    
+
     function stopAutoPlay() {
         if (autoPlayInterval) {
             clearInterval(autoPlayInterval);
             autoPlayInterval = null;
         }
     }
-    
-    nextBtn.addEventListener('click', function() {
+
+    // --- Movement Logic ---
+
+    function moveToNext() {
         if (isTransitioning) return;
-        nextSlide();
-        stopAutoPlay();
-        setTimeout(() => {
-            if (!isPaused) startAutoPlay();
-        }, 5000);
-    });
-    
-    prevBtn.addEventListener('click', function() {
+        currentIndex++;
+        isTransitioning = true;
+        updateSliderPosition(true);
+    }
+
+    function moveToPrev() {
         if (isTransitioning) return;
-        prevSlide();
-        stopAutoPlay();
-        setTimeout(() => {
-            if (!isPaused) startAutoPlay();
-        }, 5000);
+        currentIndex--;
+        isTransitioning = true;
+        updateSliderPosition(true);
+    }
+
+    // --- Loop Check (Transition End) ---
+    slider.addEventListener('transitionend', () => {
+        isTransitioning = false;
+
+        // Logic:
+        // [Clone Start (0..N-1)] [Originals (N..2N-1)] [Clone End (2N..3N-1)]
+
+        // If we drift into Close End (index >= 2N)
+        if (currentIndex >= (totalOriginals * 2)) {
+            // Jump back to start of originals (+ whatever offset we went past)
+            // Actually, if we hit 2N (first clone of end), it's same as N (first original)
+
+            slider.style.transition = 'none';
+            currentIndex = currentIndex - totalOriginals;
+            updateSliderPosition(false);
+        }
+
+        // If we drift into Clone Start (index < N)
+        if (currentIndex < totalOriginals) {
+            // Jump forward to end of originals
+            slider.style.transition = 'none';
+            currentIndex = currentIndex + totalOriginals;
+            updateSliderPosition(false);
+        }
     });
-    
-    const sliderWrapper = document.querySelector('.card-slider-wrapper');
-    if (sliderWrapper) {
-        sliderWrapper.addEventListener('mouseenter', function() {
-            isPaused = true;
+
+    // --- Drag Implementation ---
+
+    function touchStart(event) {
+        if (isTransitioning) return;
+
+        isDragging = true;
+        isPaused = true;
+        stopAutoPlay();
+        startPos = getPositionX(event);
+
+        // Disable transition for live drag
+        slider.style.transition = 'none';
+
+        animationID = requestAnimationFrame(animation);
+    }
+
+    function touchMove(event) {
+        if (isDragging) {
+            const currentPosition = getPositionX(event);
+            const currentDiff = currentPosition - startPos;
+            currentTranslate = prevTranslate + currentDiff;
+        }
+    }
+
+    function touchEnd() {
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        isPaused = false;
+        startAutoPlay();
+
+        const movedBy = currentTranslate - prevTranslate;
+
+        // Snap logic
+        // If moved significantly (> 50px), go next/prev
+        if (movedBy < -50) {
+            currentIndex++;
+        } else if (movedBy > 50) {
+            currentIndex--;
+        }
+
+        // If moved just a little, stay same (which snaps back effectively)
+
+        // Re-enable transition and go to final index
+        isTransitioning = true;
+        updateSliderPosition(true);
+    }
+
+    function animation() {
+        setSliderPosition();
+        if (isDragging) requestAnimationFrame(animation);
+    }
+
+    // Listeners
+    // Touch
+    slider.addEventListener('touchstart', touchStart, { passive: true });
+    slider.addEventListener('touchmove', touchMove, { passive: true });
+    slider.addEventListener('touchend', touchEnd);
+
+    // Mouse
+    slider.addEventListener('mousedown', touchStart);
+    slider.addEventListener('mousemove', touchMove);
+    slider.addEventListener('mouseup', touchEnd);
+    slider.addEventListener('mouseleave', () => {
+        if (isDragging) touchEnd();
+    });
+
+    // Prevent context menu interactions interfering
+    slider.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    });
+
+    // Prevent default drag of images
+    slider.querySelectorAll('img').forEach(img => {
+        img.addEventListener('dragstart', e => e.preventDefault());
+    });
+
+
+    // --- Buttons ---
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
             stopAutoPlay();
-        });
-        
-        sliderWrapper.addEventListener('mouseleave', function() {
-            isPaused = false;
+            moveToNext();
             startAutoPlay();
         });
     }
-    
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let isDragging = false;
-    
-    slider.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
-        isDragging = true;
-        stopAutoPlay();
-    }, { passive: true });
-    
-    slider.addEventListener('touchmove', function(e) {
-        if (isDragging) {
-            e.preventDefault();
-        }
-    }, { passive: false });
-    
-    slider.addEventListener('touchend', function(e) {
-        if (!isDragging) return;
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        isDragging = false;
-        setTimeout(() => {
-            if (!isPaused) startAutoPlay();
-        }, 3000);
-    }, { passive: true });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
-    }
-    
-    if (container) {
-        container.addEventListener('wheel', function(e) {
-            if (e.deltaY !== 0) {
-                e.preventDefault();
-                stopAutoPlay();
-                const delta = e.deltaY > 0 ? 1 : -1;
-                if (delta > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
-                }
-                setTimeout(() => {
-                    if (!isPaused) startAutoPlay();
-                }, 3000);
-            }
-        }, { passive: false });
-    }
-    
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') {
-            prevSlide();
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
             stopAutoPlay();
-            setTimeout(() => {
-                if (!isPaused) startAutoPlay();
-            }, 5000);
-        } else if (e.key === 'ArrowRight') {
-            nextSlide();
-            stopAutoPlay();
-            setTimeout(() => {
-                if (!isPaused) startAutoPlay();
-            }, 5000);
-        }
-    });
-    
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
+            moveToPrev();
+            startAutoPlay();
+        });
+    }
+
+    // --- Hover ---
+    container.addEventListener('mouseenter', () => {
+        isPaused = true;
         stopAutoPlay();
-        resizeTimer = setTimeout(function() {
-            updateSliderPosition(false);
-            if (!isPaused) startAutoPlay();
-        }, 250);
     });
-    
-    prevBtn.disabled = false;
-    nextBtn.disabled = false;
-    
+    container.addEventListener('mouseleave', () => {
+        isPaused = false;
+        startAutoPlay();
+    });
+
+    // --- Init ---
+    // Start at valid index (N)
     updateSliderPosition(false);
-    
     startAutoPlay();
 });
 
 /* Location Dropdown Functionality */
-document.addEventListener('DOMContentLoaded', function() {
-    if (window.__NAV_JS_ACTIVE) return;
-    const locationBtn = document.getElementById('locationBtn');
-    const locationDropdown = document.querySelector('.location-dropdown');
-    const countrySearch = document.getElementById('countrySearch');
-    const desktopCountryList = document.querySelectorAll('.country-list li');
-    if (locationBtn && locationDropdown) {
-        locationBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            locationDropdown.classList.toggle('active');
-        });
-        document.addEventListener('click', function(e) {
-            if (!locationDropdown.contains(e.target)) {
-                locationDropdown.classList.remove('active');
-            }
-        });
-        if (countrySearch && desktopCountryList.length > 0) {
-            countrySearch.addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase().trim();
-                desktopCountryList.forEach(function(item) {
-                    const link = item.querySelector('a');
-                    if (link) {
-                        const countryName = link.textContent.toLowerCase();
-                        if (countryName.includes(searchTerm)) {
-                            item.classList.remove('hidden');
-                        } else {
-                            item.classList.add('hidden');
-                        }
-                    }
-                });
-            });
-        }
-        desktopCountryList.forEach(function(item) {
-            const link = item.querySelector('a');
-            if (link) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const countryName = this.getAttribute('data-country');
-                    const btnText = locationBtn.querySelector('.button-text');
-                    if (btnText) btnText.textContent = countryName;
-                    locationDropdown.classList.remove('active');
-                    if (countrySearch) {
-                        countrySearch.value = '';
-                        desktopCountryList.forEach(li => li.classList.remove('hidden'));
-                    }
-                });
-            }
-        });
-    }
-    const mobileLocationLink = document.getElementById('mobileLocationLink');
-    const mobileLocationItem = document.querySelector('.mobile-location-item');
-    const mobileCountryList = document.querySelectorAll('.mobile-country-list li');
-    if (mobileLocationLink && mobileLocationItem) {
-        mobileLocationLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            mobileLocationItem.classList.toggle('active');
-        });
-        document.addEventListener('click', function(e) {
-            if (mobileLocationItem.classList.contains('active') && !mobileLocationItem.contains(e.target)) {
-                mobileLocationItem.classList.remove('active');
-            }
-        });
-        mobileCountryList.forEach(function(item) {
-            const link = item.querySelector('a');
-            if (link) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const countryName = this.getAttribute('data-country');
-                    const linkText = mobileLocationLink.querySelector('.location-text');
-                    if (linkText) linkText.textContent = countryName;
-                    mobileLocationItem.classList.remove('active');
-                });
-            }
-        });
-    }
-});
+/* Location Dropdown Functionality moved to nav-footer.js */
 
 /* Mobile Menu Functionality */
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.getElementById('mobileMenuContent');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const closeBtn = document.getElementById('mobileMenuClose');
-    
-    if (!hamburger || !mobileMenu || !overlay) return;
-
-    let savedScrollY = 0;
-
-    function lockScroll() {
-        savedScrollY = window.scrollY || window.pageYOffset || 0;
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${savedScrollY}px`;
-        document.body.style.width = '100%';
-    }
-
-    function unlockScroll() {
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, savedScrollY || 0);
-    }
-
-    function toggleMenu() {
-        hamburger.classList.toggle('clicked');
-        mobileMenu.classList.toggle('active');
-        overlay.classList.toggle('active');
-        
-        if (mobileMenu.classList.contains('active')) {
-            lockScroll();
-        } else {
-            unlockScroll();
-            const mli = mobileMenu.querySelector('.mobile-location-item');
-            if (mli) mli.classList.remove('active');
-        }
-    }
-
-    hamburger.addEventListener('click', toggleMenu);
-    
-    if (closeBtn) {
-        closeBtn.addEventListener('click', toggleMenu);
-    }
-    
-    overlay.addEventListener('click', toggleMenu);
-    // Close on link click
-    const menuLinks = mobileMenu.querySelectorAll('a:not(#mobileLocationLink)');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', toggleMenu);
-    });
-});
+/* Mobile Menu Functionality moved to nav-footer.js */
 
 /* Filters Popup Functionality */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const filterBtn = document.getElementById('filterBtn');
     const popup = document.getElementById('filtersPopupContent');
     const overlay = document.getElementById('filtersPopupOverlay');
@@ -399,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
         unlockScroll();
     }
 
-    filterBtn.addEventListener('click', function(e) {
+    filterBtn.addEventListener('click', function (e) {
         e.preventDefault();
         if (popup.classList.contains('active')) {
             closePopup();
@@ -409,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (closeBtn) {
-        closeBtn.addEventListener('click', function(e) {
+        closeBtn.addEventListener('click', function (e) {
             e.preventDefault();
             closePopup();
         });
@@ -417,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     overlay.addEventListener('click', closePopup);
 
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && popup.classList.contains('active')) {
             closePopup();
         }
